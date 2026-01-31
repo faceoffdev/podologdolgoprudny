@@ -9,7 +9,7 @@ const faqs = [
   {
     question: 'Как записаться на приём?',
     answer:
-      'Вы можете записаться через сайт, позвонить по телефону +7 914 861-82-42 или прийти в клинику. Онлайн запись доступна круглосуточно.',
+      `Вы можете записаться через сайт, позвонить по телефону <a href="${siteConfig.phone.href}" class="hover:underline">${siteConfig.phone.display}</a> или прийти в клинику. Онлайн запись доступна круглосуточно.`,
   },
   {
     question: 'Какие услуги вы оказываете?',
@@ -34,19 +34,13 @@ const faqs = [
 function FAQItem({
   question,
   answer,
-  isOpen,
-  onClick,
 }: {
   question: string
   answer: string
-  isOpen: boolean
-  onClick: () => void
 }) {
   return (
     <details
       className="border-b border-slate-200 last:border-b-0"
-      open={isOpen}
-      onToggle={onClick}
       itemScope
       itemType="https://schema.org/Question"
     >
@@ -62,15 +56,13 @@ function FAQItem({
         itemScope
         itemType="https://schema.org/Answer"
       >
-        <p itemProp="text">{answer}</p>
+        <p itemProp="text" dangerouslySetInnerHTML={{__html: answer}}></p>
       </div>
     </details>
   )
 }
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
   return (
     <section className="py-10 lg:py-24 bg-slate-50" itemScope itemType="https://schema.org/FAQPage">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,8 +107,6 @@ export function FAQ() {
                 key={index}
                 question={faq.question}
                 answer={faq.answer}
-                isOpen={openIndex === index}
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
               />
             ))}
           </div>
