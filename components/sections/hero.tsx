@@ -59,7 +59,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export function Hero() {
 	return (
-		<section id="home" className="relative min-h-screen pt-20 lg:pt-0 overflow-hidden">
+		<section id="home" className="relative min-h-screen pt-20 lg:pt-10 overflow-hidden">
 			{/* Background decorations */}
 			<div className="absolute inset-0 overflow-hidden">
 				<div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -67,7 +67,7 @@ export function Hero() {
 			</div>
 
 			<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-0">
+				<div className="grid lg:grid-cols-2 gap-12 lg:gap-8 lg:items-center min-h-screen py-0">
 					{/* Left Content */}
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
