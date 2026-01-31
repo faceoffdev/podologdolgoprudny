@@ -5,7 +5,7 @@ export const siteConfig = {
     display: '+7 914 861-82-42',
     href: 'tel:+79148618242',
   },
-  bookingUrl: 'https://n1735662.yclients.com',
+  bookingUrl: 'https://w1058312.yclients.com/',
   email: 'info@podologdolgoprudny.ru',
   socials: [
     {
