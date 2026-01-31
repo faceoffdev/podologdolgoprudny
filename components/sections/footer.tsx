@@ -5,160 +5,203 @@ import Image from 'next/image'
 import { siteConfig } from '@/lib/site-config'
 
 const quickLinks = [
-  { name: 'Главная', href: '#home' },
-  { name: 'Услуги', href: '#services' },
-  { name: 'Специалисты', href: '#doctors' },
-  { name: 'О нас', href: '#about' },
-  { name: 'Контакты', href: '#contact' },
+	{ name: 'Главная', href: '#home' },
+	{ name: 'Услуги', href: '#services' },
+	{ name: 'Специалисты', href: '#doctors' },
+	{ name: 'О нас', href: '#about' },
+	{ name: 'Контакты', href: '#contact' },
 ]
 
 const services = [
-  { name: 'Консультация подолога', href: '#services' },
-  { name: 'Медицинский педикюр', href: '#services' },
-  { name: 'Остеопатия', href: '#services' },
-  { name: 'Коррекция ногтей', href: '#services' },
+	{ name: 'Консультация подолога', href: '#services' },
+	{ name: 'Медицинский педикюр', href: '#services' },
+	{ name: 'Остеопатия', href: '#services' },
+	{ name: 'Коррекция ногтей', href: '#services' },
 ]
 
 const socialLinks = siteConfig.socials
 
 export function Footer() {
-  return (
-    <footer id="contact" className="bg-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer */}
-        <div className="py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Column 1 - About */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="font-bold text-lg">Центр Подологии и Остеопатии в Долгопрудном</span>
-            </div>
-            <p className="text-slate-400 mb-6 leading-relaxed">
-              Высокотехнологичный подологический кабинет и кабинет мануальных, телесно-ориентированных практик.
-              Приём ведут опытные подологи, врач ортопед-остеопат и массажисты.
-            </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 transition-all"
-                >
-                  <Image src={social.icon} alt={social.label} width={20} height={20} className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
-          </div>
+	return (
+		<footer
+			id="contact"
+			className="bg-slate-900 text-white"
+			itemScope
+			itemType="https://schema.org/Organization"
+		>
+			<meta itemProp="name" content="Центр Подологии и Остеопатии" />
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				{/* Main Footer */}
+				<div className="py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+					{/* Column 1 - About */}
+					<div className="sm:col-span-2 lg:col-span-1">
+						<div className="flex items-center gap-2 mb-6">
+							<span className="font-bold text-lg">
+								Центр Подологии и Остеопатии в Долгопрудном
+							</span>
+						</div>
+						<p className="text-slate-400 mb-6 leading-relaxed">
+							Высокотехнологичный подологический кабинет и кабинет мануальных,
+							телесно-ориентированных практик. Приём ведут опытные подологи, врач
+							ортопед-остеопат и массажисты.
+						</p>
+						<div className="flex gap-3" itemProp="sameAs">
+							{socialLinks.map((social, index) => (
+								<a
+									key={index}
+									href={social.href}
+									aria-label={social.label}
+									target="_blank"
+									rel="noreferrer"
+									className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 transition-all"
+								>
+									<Image
+										src={social.icon}
+										alt={social.label}
+										width={20}
+										height={20}
+										className="w-5 h-5"
+									/>
+								</a>
+							))}
+						</div>
+					</div>
 
-          {/* Column 2 - Quick Links */}
-          <div>
-            <h3 className="font-semibold text-lg mb-6">Навигатор</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a href={link.href} className="text-slate-400 hover:text-primary transition-colors">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+					{/* Column 2 - Quick Links */}
+					<div>
+						<h3 className="font-semibold text-lg mb-6">Навигатор</h3>
+						<ul className="space-y-3">
+							{quickLinks.map((link, index) => (
+								<li key={index}>
+									<a
+										href={link.href}
+										className="text-slate-400 hover:text-primary transition-colors"
+									>
+										{link.name}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
 
-          {/* Column 3 - Services */}
-          <div>
-            <h3 className="font-semibold text-lg mb-6">Услуги</h3>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <a href={service.href} className="text-slate-400 hover:text-primary transition-colors">
-                    {service.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+					{/* Column 3 - Services */}
+					<div>
+						<h3 className="font-semibold text-lg mb-6">Услуги</h3>
+						<ul className="space-y-3">
+							{services.map((service, index) => (
+								<li key={index}>
+									<a
+										href={service.href}
+										className="text-slate-400 hover:text-primary transition-colors"
+									>
+										{service.name}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
 
-          {/* Column 4 - Contact */}
-          <div>
-            <h3 className="font-semibold text-lg mb-6">Контакты</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-slate-400">
-                  <a href="https://yandex.ru/maps/-/CPAFbZYd" target="_blank" rel="noopener noreferrer">
-                    Лихачёвское ш., 1, корп. 4, Долгопрудный
-                  </a>
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href={siteConfig.phone.href} className="text-slate-400 hover:text-primary transition-colors">
-                  {siteConfig.phone.display}
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-slate-400 hover:text-primary transition-colors"
-                >
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-slate-400">ПН-ВС: 07:30 - 21:00</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+					{/* Column 4 - Contact */}
+					<div>
+						<h3 className="font-semibold text-lg mb-6">Контакты</h3>
+						<ul className="space-y-4">
+							<li className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+								<MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+								<span className="text-slate-400">
+									<a
+										href="https://yandex.ru/maps/-/CPAFbZYd"
+										target="_blank"
+										rel="noopener noreferrer"
+										itemProp="streetAddress"
+									>
+										Лихачёвское ш., 1, корп. 4, Долгопрудный
+									</a>
+								</span>
+							</li>
+							<meta itemProp="addressLocality" content="Долгопрудный" />
+							<meta itemProp="addressCountry" content="RU" />
+							<li className="flex items-center gap-3">
+								<Phone className="w-5 h-5 text-primary flex-shrink-0" />
+								<a
+									href={siteConfig.phone.href}
+									className="text-slate-400 hover:text-primary transition-colors"
+									itemProp="telephone"
+								>
+									{siteConfig.phone.display}
+								</a>
+							</li>
+							<li className="flex items-center gap-3">
+								<Mail className="w-5 h-5 text-primary flex-shrink-0" />
+								<a
+									href={`mailto:${siteConfig.email}`}
+									className="text-slate-400 hover:text-primary transition-colors"
+									itemProp="email"
+								>
+									{siteConfig.email}
+								</a>
+							</li>
+							<li className="flex items-center gap-3">
+								<Clock className="w-5 h-5 text-primary flex-shrink-0" />
+								<span className="text-slate-400">ПН-ВС: 07:30 - 21:00</span>
+							</li>
+						</ul>
+					</div>
+				</div>
 
-        {/* Legal Info */}
-        <div className="border-t border-slate-800 pt-8 pb-6 text-slate-400 text-sm leading-relaxed">
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div>
-              <p className="font-semibold text-white mb-2">Реквизиты ИП</p>
-              <p>ИП Солоха Татьяна Викторовна</p>
-              <p>ИНН 490906529553</p>
-              <p>ОГРНИП 324508100720822</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-2">Реквизиты ООО</p>
-              <p>ООО «Центр Подологии и Остеопатии»</p>
-              <p>ИНН 5047321471</p>
-              <p>ОГРН 1255000100200</p>
-            </div>
-          </div>
-          <div className="mt-6 space-y-2">
-            <p>
-              Материалы, размещённые на сайте, не предназначены для постановки диагноза и лечения и не заменяют
-              приём врача. Имеются противопоказания. Необходима консультация специалиста.
-            </p>
-            <p>
-              Обращаем Ваше внимание на то, что данный интернет-сайт носит исключительно информационный характер и
-              ни при каких условиях информационные материалы и цены, размещенные на сайте, не являются публичной
-              офертой, определяемой положениями Статьи 437 Гражданского кодекса РФ.
-            </p>
-          </div>
-        </div>
+				{/* Legal Info */}
+				<div className="border-t border-slate-800 pt-8 pb-6 text-slate-400 text-sm leading-relaxed">
+					<div className="grid gap-6 lg:grid-cols-2">
+						<div>
+							<p className="font-semibold text-white mb-2">Реквизиты ИП</p>
+							<p>ИП Солоха Татьяна Викторовна</p>
+							<p>ИНН 490906529553</p>
+							<p>ОГРНИП 324508100720822</p>
+						</div>
+						<div>
+							<p className="font-semibold text-white mb-2">Реквизиты ООО</p>
+							<p>ООО «Центр Подологии и Остеопатии»</p>
+							<p>ИНН 5047321471</p>
+							<p>ОГРН 1255000100200</p>
+						</div>
+					</div>
+					<div className="mt-6 space-y-2">
+						<p>
+							Материалы, размещённые на сайте, не предназначены для постановки
+							диагноза и лечения и не заменяют приём врача. Имеются
+							противопоказания. Необходима консультация специалиста.
+						</p>
+						<p>
+							Обращаем Ваше внимание на то, что данный интернет-сайт носит
+							исключительно информационный характер и ни при каких условиях
+							информационные материалы и цены, размещенные на сайте, не являются
+							публичной офертой, определяемой положениями Статьи 437
+							Гражданского кодекса РФ.
+						</p>
+					</div>
+				</div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-slate-400 text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Центр Подологии и Остеопатии. Все права защищены.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-slate-400 hover:text-primary text-sm transition-colors">
-              Политика конфиденциальности
-            </a>
-            <a href="#" className="text-slate-400 hover:text-primary text-sm transition-colors">
-              Пользовательское соглашение
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
+				{/* Bottom Bar */}
+				<div className="py-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+					<p className="text-slate-400 text-sm text-center sm:text-left">
+						© {new Date().getFullYear()} Центр Подологии и Остеопатии. Все права
+						защищены.
+					</p>
+					<div className="flex gap-6">
+						<a
+							href="#"
+							className="text-slate-400 hover:text-primary text-sm transition-colors"
+						>
+							Политика конфиденциальности
+						</a>
+						<a
+							href="#"
+							className="text-slate-400 hover:text-primary text-sm transition-colors"
+						>
+							Пользовательское соглашение
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	)
 }
