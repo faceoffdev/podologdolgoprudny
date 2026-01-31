@@ -47,6 +47,15 @@ const doctors: Array<{
     profileUrl: '',
     socials: [],
   },
+  {
+    name: 'Голикова Наталья',
+    specialty: 'врач-реабилитолог',
+    medicalSpecialty: 'Реабилитация',
+    rating: '5.0',
+    image: withBasePath('/images/doctors/natali-golikova.jpg'),
+    profileUrl: '',
+    socials: [],
+  },
 ]
 
 const containerVariants: Variants = {
@@ -99,7 +108,7 @@ export function Doctors() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+          className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {doctors.map((doctor, index) => (
             <motion.div key={index} variants={itemVariants} itemScope itemType="https://schema.org/Person">
