@@ -12,13 +12,18 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
           <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">
-            О нас говорят
+            Отзывы пациентов
           </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Отзывы на Яндекс Картах</h2>
-          <p className="text-lg text-slate-600">Реальные отзывы пациентов из Яндекс Карт.</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+            Отзывы о центре подологии и остеопатии в Долгопрудном
+          </h2>
+          <p className="text-lg text-slate-600">
+            Читайте реальные отзывы о медицинском педикюре, коррекции ногтей, лечении вросшего ногтя и
+            остеопатическом приеме. Все отзывы собраны на Яндекс Картах.
+          </p>
         </motion.div>
 
         {/* Yandex Maps Reviews Widget */}
@@ -27,7 +32,9 @@ export function Testimonials() {
             <iframe
               className="w-full h-full border border-slate-200 rounded-lg"
               src="https://yandex.ru/maps-reviews-widget/183656109627?comments"
-              title="Отзывы Яндекс.Карт"
+              title="Отзывы на Яндекс Картах"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
             <a
               href="https://yandex.ru/maps/org/tsentr_podologii_i_osteopatii/183656109627/"
