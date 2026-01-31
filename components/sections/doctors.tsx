@@ -30,7 +30,7 @@ const doctors: Array<{
   socials: DoctorSocial[]
 }> = [
   {
-    name: 'Рекунова Анна',
+    name: 'Рекунова Анна Алексеевна',
     specialty: 'подолог',
     medicalSpecialty: 'Подология',
     rating: '5.0',
@@ -39,7 +39,7 @@ const doctors: Array<{
     socials: [],
   },
   {
-    name: 'Дольган Эдгаев',
+    name: 'Эдгаев Дольган Алексеевич',
     specialty: 'врач-остеопат',
     medicalSpecialty: 'Остеопатия',
     rating: '5.0',
@@ -48,7 +48,7 @@ const doctors: Array<{
     socials: [],
   },
   {
-    name: 'Голикова Наталья',
+    name: 'Голикова Наталья Анатольевна',
     specialty: 'врач-реабилитолог',
     medicalSpecialty: 'Реабилитация',
     rating: '5.0',
