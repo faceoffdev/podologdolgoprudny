@@ -56,7 +56,12 @@ function FAQItem({
         </span>
         <ChevronDown className="w-5 h-5 text-slate-500" />
       </summary>
-      <div className="pb-5 text-slate-600 leading-relaxed" itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
+      <div
+        className="pb-5 text-slate-600 leading-relaxed"
+        itemProp="acceptedAnswer"
+        itemScope
+        itemType="https://schema.org/Answer"
+      >
         <p itemProp="text">{answer}</p>
       </div>
     </details>
@@ -84,8 +89,8 @@ export function FAQ() {
               Часто задаваемые вопросы о подологии в Долгопрудном
             </h2>
             <p className="text-lg text-slate-600 mb-8">
-              Ответы на вопросы о подологическом приёме, медицинском педикюре, лечении вросшего ногтя и
-              остеопатических консультациях. Если нужна помощь — свяжитесь с нами.
+              Ответы на вопросы о подологическом приёме, медицинском педикюре, лечении вросшего ногтя и остеопатических
+              консультациях. Если нужна помощь — свяжитесь с нами.
             </p>
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center">

@@ -56,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       />
     )
-  }
+  },
 )
 Button.displayName = 'Button'
 
