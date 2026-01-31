@@ -55,7 +55,7 @@ export function Footer() {
 
           {/* Column 2 - Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-6">Навигатор</h3>
+            <p className="font-semibold text-lg mb-6">Навигатор</p>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -69,7 +69,7 @@ export function Footer() {
 
           {/* Column 3 - Services */}
           <div>
-            <h3 className="font-semibold text-lg mb-6">Услуги</h3>
+            <p className="font-semibold text-lg mb-6">Услуги</p>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
@@ -83,7 +83,7 @@ export function Footer() {
 
           {/* Column 4 - Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-6">Контакты</h3>
+            <p className="font-semibold text-lg mb-6">Контакты</p>
             <ul className="space-y-4">
               <li
                 className="flex items-start gap-3"

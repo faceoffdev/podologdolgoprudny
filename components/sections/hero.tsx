@@ -88,14 +88,14 @@ export function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <motion.h1
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight"
             >
               Ведущий подолог и организатор центра <span className="text-primary">Солоха Татьяна Викторовна</span>
-            </motion.h1>
+            </motion.p>
 
             {/* Subheadline */}
             <motion.p

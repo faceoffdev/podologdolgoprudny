@@ -150,15 +150,11 @@ export function Doctors() {
                   </div>
                 </div>
                 <CardContent className="p-5 text-center">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-1" itemProp="name">
-                    {doctor.profileUrl ? (
-                      <a href={doctor.profileUrl} itemProp="url">
-                        {doctor.name}
-                      </a>
-                    ) : (
-                      doctor.name
-                    )}
-                  </h3>
+                  <p className="text-lg font-semibold text-slate-900 mb-1" itemProp="name">
+                    <a href="#" itemProp="url">
+                      {doctor.name}
+                    </a>
+                  </p>
                   <p className="text-slate-500 text-sm mb-3" itemProp="jobTitle">
                     {doctor.specialty}
                   </p>

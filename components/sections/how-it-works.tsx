@@ -67,7 +67,7 @@ export function HowItWorks() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-sm font-bold text-primary">{step.number}</span>
-                      <h3 className="text-xl font-semibold text-slate-900">{step.title}</h3>
+                      <p className="text-xl font-semibold text-slate-900">{step.title}</p>
                     </div>
                     <p className="text-slate-600">{step.description}</p>
                   </div>

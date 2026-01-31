@@ -8,8 +8,7 @@ import { siteConfig } from '@/lib/site-config'
 const faqs = [
   {
     question: 'Как записаться на приём?',
-    answer:
-      `Вы можете записаться через сайт, позвонить по телефону <a href="${siteConfig.phone.href}" class="hover:underline">${siteConfig.phone.display}</a> или прийти в клинику. Онлайн запись доступна круглосуточно.`,
+    answer: `Вы можете записаться через сайт, позвонить по телефону <a href="${siteConfig.phone.href}" class="hover:underline">${siteConfig.phone.display}</a> или прийти в клинику. Онлайн запись доступна круглосуточно.`,
   },
   {
     question: 'Какие услуги вы оказываете?',
@@ -31,19 +30,9 @@ const faqs = [
   },
 ]
 
-function FAQItem({
-  question,
-  answer,
-}: {
-  question: string
-  answer: string
-}) {
+function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
-    <details
-      className="border-b border-slate-200 last:border-b-0"
-      itemScope
-      itemType="https://schema.org/Question"
-    >
+    <details className="border-b border-slate-200 last:border-b-0" itemScope itemType="https://schema.org/Question">
       <summary className="w-full py-5 flex items-center justify-between text-left cursor-pointer list-none">
         <span className="text-lg font-medium text-slate-900 pr-8" itemProp="name">
           {question}
@@ -56,7 +45,7 @@ function FAQItem({
         itemScope
         itemType="https://schema.org/Answer"
       >
-        <p itemProp="text" dangerouslySetInnerHTML={{__html: answer}}></p>
+        <p itemProp="text" dangerouslySetInnerHTML={{ __html: answer }}></p>
       </div>
     </details>
   )
@@ -103,11 +92,7 @@ export function FAQ() {
           {/* Right Content - Accordion */}
           <div className="bg-white rounded-2xl shadow-sm p-6 lg:p-8">
             {faqs.map((faq, index) => (
-              <FAQItem
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-              />
+              <FAQItem key={index} question={faq.question} answer={faq.answer} />
             ))}
           </div>
         </div>
