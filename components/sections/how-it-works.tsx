@@ -94,7 +94,7 @@ export function HowItWorks() {
                 <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center">
-                      <Calendar className="w-6 h-6 text-primary" />
+                      <Calendar className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900">Выбрать дату и время</p>
@@ -120,7 +120,7 @@ export function HowItWorks() {
                   <p className="text-sm text-slate-500 mb-4">Специалист</p>
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-lg">НА</span>
+                      <span className="text-white font-bold text-lg">НА</span>
                     </div>
                     <div>
                       <p className="font-semibold text-slate-900">Наталия Анатольевна Голикова</p>

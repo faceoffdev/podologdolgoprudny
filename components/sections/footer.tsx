@@ -91,8 +91,8 @@ export function Footer() {
                 itemScope
                 itemType="https://schema.org/PostalAddress"
               >
-                <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-slate-400">
+                <MapPin className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
+                <span className="text-slate-400 hover:text-primary">
                   <a
                     href="https://yandex.ru/maps/-/CPAFbZYd"
                     target="_blank"
@@ -106,7 +106,7 @@ export function Footer() {
               <meta itemProp="addressLocality" content="Долгопрудный" />
               <meta itemProp="addressCountry" content="RU" />
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+                <Phone className="w-5 h-5 text-white flex-shrink-0" />
                 <a
                   href={siteConfig.phone.href}
                   className="text-slate-400 hover:text-primary transition-colors"
@@ -116,7 +116,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                <Mail className="w-5 h-5 text-white flex-shrink-0" />
                 <a
                   href={`mailto:${siteConfig.email}`}
                   className="text-slate-400 hover:text-primary transition-colors"
@@ -126,7 +126,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                <Clock className="w-5 h-5 text-white flex-shrink-0" />
                 <span className="text-slate-400">ПН-ВС: 07:30 - 21:00</span>
               </li>
             </ul>

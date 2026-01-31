@@ -81,9 +81,9 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="inline-flex items-center gap-2 bg-primary-light text-primary px-4 py-2 rounded-full text-sm font-medium"
+              className="inline-flex items-center gap-2 bg-primary-light text-white px-4 py-2 rounded-full text-sm font-medium"
             >
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
               Ваш подолог в Долгопрудном
             </motion.div>
 
@@ -200,7 +200,7 @@ export function Hero() {
                 className="absolute -right-4 bottom-1/4 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3"
               >
                 <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-primary" />
+                  <Users className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <p className="font-bold text-slate-900">3000+</p>
