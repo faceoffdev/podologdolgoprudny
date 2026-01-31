@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/site-config'
 
 export function CTA() {
   return (
-    <section className="py-20 lg:py-24 bg-white">
+    <section className="py-10 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -50,19 +50,16 @@ export function CTA() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
-                <a
+                <Button
                   href={siteConfig.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 hover:scale-105 transition-all group"
                 >
-                  <Button
-                    size="lg"
-                    className="bg-white text-primary hover:bg-white/90 hover:scale-105 transition-all group"
-                  >
-                    Записаться
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </a>
+                  Записаться
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
                 <a
                   href={siteConfig.phone.href}
                   className="inline-flex items-center justify-center gap-2 text-white hover:text-white/80 transition-colors"

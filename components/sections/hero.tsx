@@ -67,7 +67,7 @@ export function Hero() {
 			</div>
 
 			<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-12 lg:py-0">
+				<div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-0">
 					{/* Left Content */}
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -115,13 +115,17 @@ export function Hero() {
 							transition={{ duration: 0.6, delay: 0.6 }}
 							className="flex flex-col sm:flex-row gap-4"
 						>
-							<a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
-								<Button size="lg" className="group">
-									<Calendar className="w-5 h-5 mr-2" />
-									Записаться на приём
-									<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-								</Button>
-							</a>
+							<Button
+								href={siteConfig.bookingUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								size="lg"
+								className="group"
+							>
+								<Calendar className="w-5 h-5 mr-2" />
+								Записаться на приём
+								<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+							</Button>
 							<Button variant="secondary" size="lg">
 								Подробнее о специалисте
 							</Button>
