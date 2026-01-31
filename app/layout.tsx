@@ -7,10 +7,34 @@ export const metadata: Metadata = {
     'Подологическая и остеопатическая помощь, медицинский педикюр и коррекция ногтей. Запись на приём онлайн и по телефону.',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  name: 'Центр Подологии и Остеопатии',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 5.0,
+    reviewCount: 78,
+    ratingCount: 109,
+    bestRating: 5,
+    worstRating: 1,
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="ru">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   )
 }
