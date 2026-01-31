@@ -7,6 +7,7 @@ import { Testimonials } from '@/components/sections/testimonials'
 import { FAQ } from '@/components/sections/faq'
 import { CTA } from '@/components/sections/cta'
 import { Footer } from '@/components/sections/footer'
+import { YandexMap } from '@/components/sections/yandex-map'
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <CTA />
+      <YandexMap />
       <Footer />
     </main>
   )
