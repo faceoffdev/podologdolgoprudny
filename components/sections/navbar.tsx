@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
-import { buttonVariants } from '@/components/ui/button'
+import {Button, buttonVariants} from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 import { siteConfig } from '@/lib/site-config'
 
 const navLinks = [
@@ -34,10 +35,10 @@ export function Navbar() {
 				isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent',
 			)}
 		>
-			<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Основная навигация">
 				<div className="flex items-center justify-between h-18 lg:h-20">
 					{/* Logo */}
-					<div className="flex items-center gap-2 min-w-0 pt-2 lg:pt-0">
+					<Link href="/" className="flex items-center gap-2 min-w-0 pt-2 lg:pt-0">
 						<Image
 							src="/images/logo.svg"
 							alt="Центр Подологии и Остеопатии"
@@ -49,7 +50,7 @@ export function Navbar() {
 						<span className="font-bold text-xl text-slate-900 leading-tight max-w-[12rem] whitespace-normal break-words">
 							Центр подологии и остеопатии
 						</span>
-					</div>
+					</Link>
 
 					{/* Desktop Navigation */}
 					<div className="hidden lg:flex items-center gap-8">
@@ -70,14 +71,13 @@ export function Navbar() {
 							<Phone className="w-4 h-4" />
 							<span className="font-medium">{siteConfig.phone.display}</span>
 						</a>
-						<a
-							href={siteConfig.bookingUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							className={buttonVariants({ variant: 'default', size: 'default' })}
-						>
-							Онлайн запись
-						</a>
+            <Button
+              href={siteConfig.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Онлайн запись
+            </Button>
 					</div>
 
 					{/* Mobile Menu Button */}
