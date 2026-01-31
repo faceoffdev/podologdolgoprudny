@@ -119,7 +119,7 @@ const itemVariants: Variants = {
 
 export function Services() {
 	return (
-		<section id="services" className="py-10 lg:py-24 bg-slate-50">
+		<section id="services" className="py-10 lg:py-24 bg-slate-50" itemScope itemType="https://schema.org/Service">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<motion.div
@@ -133,7 +133,7 @@ export function Services() {
 						Наши услуги
 					</span>
 					<h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-						Какие услуги оказывает подолог?
+						Подологические услуги в Долгопрудном
 					</h2>
 					<p className="text-lg text-slate-600">
 						Подологи работают с проблемными стопами и изменёнными ногтевыми
@@ -152,22 +152,22 @@ export function Services() {
 					className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8"
 				>
 					{services.map((service, index) => (
-						<motion.div key={index} variants={itemVariants}>
+						<motion.div key={index} variants={itemVariants} itemScope itemType="https://schema.org/Service">
 							<Card className="h-full group cursor-pointer">
 								<CardContent className="p-6 lg:p-8">
 									<Image
 										src={service.img}
-										alt={service.title}
+										alt={`Услуга: ${service.title}`}
 										width={80}
 										height={80}
 										className="w-20 h-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
 									/>
-									<h3 className="text-xl font-semibold text-slate-900 mb-3">
+									<h3 className="text-xl font-semibold text-slate-900 mb-3" itemProp="name">
 										{service.title}
 									</h3>
 									<ul className="text-slate-600 leading-relaxed list-disc list-inside space-y-2">
 										{service.list.map((item, idx) => (
-											<li key={idx}>
+											<li key={idx} itemProp="description">
 												<a href={item.link}>{item.name}</a>
 											</li>
 										))}
