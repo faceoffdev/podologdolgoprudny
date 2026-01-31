@@ -4,6 +4,7 @@ import { motion, type Variants } from 'framer-motion'
 import Image from 'next/image'
 import { Star, Facebook, Twitter, Linkedin } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import { withBasePath } from '@/lib/paths'
 
 const socialIcons = {
   facebook: Facebook,
@@ -33,7 +34,7 @@ const doctors: Array<{
     specialty: 'подолог',
     medicalSpecialty: 'Подология',
     rating: '5.0',
-    image: '/images/doctors/anna-rekunova.jpeg',
+    image: withBasePath('/images/doctors/anna-rekunova.jpeg'),
     profileUrl: '',
     socials: [],
   },
@@ -42,7 +43,7 @@ const doctors: Array<{
     specialty: 'врач-остеопат',
     medicalSpecialty: 'Остеопатия',
     rating: '5.0',
-    image: '/images/doctors/dolgan-edgaev.jpeg',
+    image: withBasePath('/images/doctors/dolgan-edgaev.jpeg'),
     profileUrl: '',
     socials: [],
   },

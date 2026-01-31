@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/site-config'
+import { withBasePath } from '@/lib/paths'
 
 const navLinks = [
   { name: 'Главная', href: '#home' },
@@ -40,7 +41,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 min-w-0 pt-2 lg:pt-0">
             <Image
-              src="/images/logo.svg"
+              src={withBasePath('/images/logo.svg')}
               alt="Центр Подологии и Остеопатии"
               width={60}
               height={60}

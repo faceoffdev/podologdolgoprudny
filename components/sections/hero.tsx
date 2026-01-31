@@ -6,6 +6,7 @@ import { ArrowRight, Calendar, Users, Star, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { siteConfig } from '@/lib/site-config'
+import { withBasePath } from '@/lib/paths'
 
 const stats = [
   { icon: Users, value: 3000, suffix: '+', label: 'Довольных пациентов' },
@@ -165,7 +166,7 @@ export function Hero() {
               {/* Image container */}
               <div className="relative bg-gradient-to-br from-primary-light to-white rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/solokha-tatiana-1600.jpg"
+                  src={withBasePath('/images/solokha-tatiana-1600.jpg')}
                   alt="Солоха Татьяна Викторовна"
                   width={600}
                   height={800}

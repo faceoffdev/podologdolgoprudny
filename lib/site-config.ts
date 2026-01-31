@@ -1,3 +1,5 @@
+import { withBasePath } from './paths'
+
 export const siteConfig = {
   phone: {
     display: '+7 914 861-82-42',
@@ -9,12 +11,12 @@ export const siteConfig = {
     {
       label: 'Instagram',
       href: 'https://www.instagram.com/tatiana_asteri',
-      icon: '/icons/instagram.svg',
+      icon: withBasePath('/icons/instagram.svg'),
     },
     {
       label: 'Telegram',
       href: 'https://t.me/podology_osteopathy',
-      icon: '/icons/telegram.svg',
+      icon: withBasePath('/icons/telegram.svg'),
     },
   ],
 } as const
