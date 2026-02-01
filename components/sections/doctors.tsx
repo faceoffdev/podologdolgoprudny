@@ -2,61 +2,18 @@
 
 import { motion, type Variants } from 'framer-motion'
 import Image from 'next/image'
-import { Star, Facebook, Twitter, Linkedin } from 'lucide-react'
+import Link from 'next/link'
+import { Star, Facebook, Twitter, Linkedin, Instagram, Send } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
-import { withBasePath } from '@/lib/paths'
+import { doctors } from '@/lib/doctors'
 
 const socialIcons = {
   facebook: Facebook,
   twitter: Twitter,
   linkedin: Linkedin,
+  instagram: Instagram,
+  telegram: Send,
 } as const
-
-type SocialType = keyof typeof socialIcons
-
-type DoctorSocial = {
-  type: SocialType
-  href: string
-  label: string
-}
-
-const doctors: Array<{
-  name: string
-  specialty: string
-  medicalSpecialty: string
-  rating: string
-  image: string
-  profileUrl: string
-  socials: DoctorSocial[]
-}> = [
-  {
-    name: 'Рекунова Анна Алексеевна',
-    specialty: 'подолог',
-    medicalSpecialty: 'Подология',
-    rating: '5.0',
-    image: withBasePath('/images/doctors/anna-rekunova.jpeg'),
-    profileUrl: '',
-    socials: [],
-  },
-  {
-    name: 'Эдгаев Дольган Алексеевич',
-    specialty: 'врач-остеопат',
-    medicalSpecialty: 'Остеопатия',
-    rating: '5.0',
-    image: withBasePath('/images/doctors/dolgan-edgaev.jpeg'),
-    profileUrl: '',
-    socials: [],
-  },
-  {
-    name: 'Голикова Наталья Анатольевна',
-    specialty: 'врач-реабилитолог',
-    medicalSpecialty: 'Реабилитация',
-    rating: '5.0',
-    image: withBasePath('/images/doctors/natali-golikova.jpg'),
-    profileUrl: '',
-    socials: [],
-  },
-]
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -143,26 +100,21 @@ export function Doctors() {
                           )
                         })
                       ) : (
-                        <>
-                          <button className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all">
-                            <Facebook className="w-5 h-5 text-slate-700" />
-                          </button>
-                          <button className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all">
-                            <Twitter className="w-5 h-5 text-slate-700" />
-                          </button>
-                          <button className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all">
-                            <Linkedin className="w-5 h-5 text-slate-700" />
-                          </button>
-                        </>
+                        <Link
+                          href={doctor.profileUrl}
+                          className="px-4 py-2 rounded-full bg-white/90 text-slate-700 text-sm font-medium hover:bg-white hover:scale-105 transition-all"
+                        >
+                          Профиль
+                        </Link>
                       )}
                     </div>
                   </div>
                 </div>
                 <CardContent className="p-5 text-center">
                   <p className="text-lg font-semibold text-slate-900 mb-1" itemProp="name">
-                    <a href="#" itemProp="url">
+                    <Link href={doctor.profileUrl} itemProp="url" className="hover:text-primary transition-colors">
                       {doctor.name}
-                    </a>
+                    </Link>
                   </p>
                   <p className="text-slate-500 text-sm mb-3" itemProp="jobTitle">
                     {doctor.specialty}
