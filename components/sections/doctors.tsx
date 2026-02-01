@@ -3,16 +3,13 @@
 import { motion, type Variants } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Star, Facebook, Twitter, Linkedin, Instagram, Send } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { doctors } from '@/lib/doctors'
+import { withBasePath } from '@/lib/paths'
 
 const socialIcons = {
-  facebook: Facebook,
-  twitter: Twitter,
-  linkedin: Linkedin,
-  instagram: Instagram,
-  telegram: Send,
+  instagram: withBasePath('/icons/instagram.svg'),
+  telegram: withBasePath('/icons/telegram.svg'),
 } as const
 
 const containerVariants: Variants = {
@@ -84,7 +81,8 @@ export function Doctors() {
                     <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
                       {doctor.socials.length > 0 ? (
                         doctor.socials.map((social, socialIndex) => {
-                          const Icon = socialIcons[social.type]
+                          const iconSrc = socialIcons[social.type]
+                          const iconColor = social.type === 'instagram' ? '#E1306C' : '#229ED9'
                           return (
                             <a
                               key={`${doctor.name}-${social.type}-${socialIndex}`}
@@ -93,9 +91,22 @@ export function Doctors() {
                               rel="noreferrer"
                               aria-label={social.label}
                               itemProp="sameAs"
-                              className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all"
+                              className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-slate-200 hover:scale-110 transition-all"
                             >
-                              <Icon className="w-5 h-5 text-slate-700" />
+                              <span
+                                className="w-5 h-5 inline-block"
+                                style={{
+                                  backgroundColor: iconColor,
+                                  maskImage: `url(${iconSrc})`,
+                                  WebkitMaskImage: `url(${iconSrc})`,
+                                  maskSize: 'contain',
+                                  WebkitMaskSize: 'contain',
+                                  maskRepeat: 'no-repeat',
+                                  WebkitMaskRepeat: 'no-repeat',
+                                  maskPosition: 'center',
+                                  WebkitMaskPosition: 'center',
+                                }}
+                              />
                             </a>
                           )
                         })
@@ -122,10 +133,6 @@ export function Doctors() {
                   <meta itemProp="medicalSpecialty" content={doctor.medicalSpecialty} />
                   <div itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
                     <meta itemProp="name" content="Центр Подологии и Остеопатии" />
-                  </div>
-                  <div className="flex items-center justify-center gap-1">
-                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                    <span className="font-semibold text-slate-900">{doctor.rating}</span>
                   </div>
                 </CardContent>
               </Card>

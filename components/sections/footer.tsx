@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/site-config'
 const quickLinks = [
   { name: 'Главная', href: '#home' },
   { name: 'Услуги', href: '#services' },
-  { name: 'Специалисты', href: '#doctors' },
+  { name: 'Специалисты', href: '/doctors' },
   { name: 'О нас', href: '#about' },
   { name: 'Контакты', href: '#contact' },
 ]

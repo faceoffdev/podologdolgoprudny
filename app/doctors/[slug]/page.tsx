@@ -10,6 +10,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { doctors, findDoctorBySlug } from '@/lib/doctors'
 import { siteConfig } from '@/lib/site-config'
+import { withBasePath } from '@/lib/paths'
+
+const socialIcons = {
+  instagram: withBasePath('/icons/instagram.svg'),
+  telegram: withBasePath('/icons/telegram.svg'),
+} as const
 
 export async function generateStaticParams() {
   return doctors.map((doctor) => ({ slug: doctor.slug }))
@@ -37,11 +43,48 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
     notFound()
   }
 
-  const otherDoctors = doctors.filter((item) => item.slug !== doctor.slug).slice(0, 2)
+  const otherDoctors = doctors
+    .filter((item) => item.slug !== doctor.slug && item.medicalSpecialty === doctor.medicalSpecialty)
+    .slice(0, 2)
+
+  const siteUrl = siteConfig.siteUrl
+  const organizationId = `${siteUrl}/#organization`
+  const organizationUrl = siteUrl
+
+  const organizationJson = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    '@id': organizationId,
+    name: 'Центр Подологии и Остеопатии',
+    url: organizationUrl,
+    telephone: siteConfig.phone.display,
+    email: siteConfig.email,
+    image: `${siteUrl}${withBasePath('/images/logo.svg')}`,
+    sameAs: siteConfig.socials.map((social) => social.href),
+  }
+
+  const personJson = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: doctor.name,
+    jobTitle: doctor.specialty,
+    medicalSpecialty: doctor.medicalSpecialty,
+    image: `${siteUrl}${doctor.image}`,
+    description: doctor.shortBio,
+    url: `${siteUrl}${doctor.profileUrl}`,
+    worksFor: {
+      '@id': organizationId,
+      '@type': 'MedicalBusiness',
+      name: 'Центр Подологии и Остеопатии',
+    },
+    ...(doctor.socials.length > 0 ? { sameAs: doctor.socials.map((social) => social.href) } : {}),
+  }
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJson) }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +93,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
               Главная
             </Link>
             <span>/</span>
-            <Link href="/#doctors" className="hover:text-primary transition-colors">
+            <Link href="/doctors" className="hover:text-primary transition-colors">
               Специалисты
             </Link>
             <span>/</span>
@@ -123,7 +166,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
           <div className="lg:col-span-2 space-y-6 lg:space-y-8">
             <Card>
               <CardHeader>
-                <CardTitle>О враче</CardTitle>
+                <CardTitle>О специалисте</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-slate-600 leading-relaxed">
                 {doctor.bio.map((paragraph) => (
@@ -165,22 +208,24 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
           </div>
 
           <div className="space-y-5 sm:space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Прием и расписание</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-slate-600">
-                <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-primary mt-0.5" />
-                  <div className="space-y-1">
-                    {doctor.schedule.map((item) => (
-                      <p key={item}>{item}</p>
-                    ))}
+            {doctor.schedule.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Прием и расписание</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-slate-600">
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-5 h-5 text-primary mt-0.5" />
+                    <div className="space-y-1">
+                      {doctor.schedule.map((item) => (
+                        <p key={item}>{item}</p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <p className="text-sm text-slate-500">{doctor.reception}</p>
-              </CardContent>
-            </Card>
+                  <p className="text-sm text-slate-500">{doctor.reception}</p>
+                </CardContent>
+              </Card>
+            )}
 
             {doctor.certifications.length > 0 && (
               <Card>
@@ -204,11 +249,46 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Calendar className="w-5 h-5 mr-2" />
                   Записаться онлайн
                 </Button>
-                <Button href={siteConfig.phone.href} variant="secondary" className="w-full">
-                  Позвонить {siteConfig.phone.display}
+                <Button href={siteConfig.phone.href} variant="secondary" className="w-full" aria-label="Позвонить">
+                  <Phone className="w-5 h-5 mr-2" />
+                  {siteConfig.phone.display}
                 </Button>
+                {doctor.socials.length > 0 && (
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    {doctor.socials.map((social, socialIndex) => {
+                      const iconSrc = socialIcons[social.type]
+                      const iconColor = social.type === 'instagram' ? '#E1306C' : '#229ED9'
+                      return (
+                        <a
+                          key={`${doctor.name}-${social.type}-${socialIndex}`}
+                          href={social.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={social.label}
+                          className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-slate-200 hover:scale-105 transition-all"
+                        >
+                          <span
+                            className="w-5 h-5 inline-block"
+                            style={{
+                              backgroundColor: iconColor,
+                              maskImage: `url(${iconSrc})`,
+                              WebkitMaskImage: `url(${iconSrc})`,
+                              maskSize: 'contain',
+                              WebkitMaskSize: 'contain',
+                              maskRepeat: 'no-repeat',
+                              WebkitMaskRepeat: 'no-repeat',
+                              maskPosition: 'center',
+                              WebkitMaskPosition: 'center',
+                            }}
+                          />
+                        </a>
+                      )
+                    })}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -220,9 +300,6 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Другие специалисты</h2>
-              <Link href="/#doctors" className="text-primary font-medium hover:text-primary-dark">
-                Смотреть всех
-              </Link>
             </div>
             <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
               {otherDoctors.map((item) => (
