@@ -34,7 +34,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Подология',
     rating: '5.0',
     image: withBasePath('/images/doctors/tatiana-solokha.jpg'),
-    profileUrl: withBasePath('/doctors/tatiana-solokha/'),
+    profileUrl: '/doctors/tatiana-solokha/',
     socials: [
       { type: 'instagram', href: 'https://www.instagram.com/tatiana_asteri', label: 'Instagram' },
       { type: 'telegram', href: 'https://t.me/podology_osteopathy', label: 'Telegram' },
@@ -62,7 +62,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Подология',
     rating: '4.9',
     image: withBasePath('/images/doctors/anna-rekunova.jpeg'),
-    profileUrl: withBasePath('/doctors/anna-rekunova/'),
+    profileUrl: '/doctors/anna-rekunova/',
     socials: [],
     shortBio: 'Подолог, помогает пожилым пациентам и выезжает на дом к лежачим и тяжело больным.',
     bio: [
@@ -90,7 +90,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Подология',
     rating: '5.0',
     image: withBasePath('/images/doctors/yana-ionycheva.jpg'),
-    profileUrl: withBasePath('/doctors/yana-ionycheva/'),
+    profileUrl: '/doctors/yana-ionycheva/',
     socials: [],
     shortBio:
       'Подолог, выполняет обработку стоп и ногтей, включая аппаратную чистку поврежденных ногтевых пластин со спреем.',
@@ -122,7 +122,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Остеопатия',
     rating: '4.1',
     image: withBasePath('/images/doctors/dolgan-edgaev.jpeg'),
-    profileUrl: withBasePath('/doctors/dolgan-edgaev/'),
+    profileUrl: '/doctors/dolgan-edgaev/',
     socials: [],
     shortBio:
       'Врач-остеопат, работает с болевыми синдромами, нарушением осанки и последствиями травм. Подбирает индивидуальную программу восстановления.',
@@ -159,7 +159,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Реабилитация',
     rating: '4.3',
     image: withBasePath('/images/doctors/natali-golikova.jpg'),
-    profileUrl: withBasePath('/doctors/natali-golikova/'),
+    profileUrl: '/doctors/natali-golikova/',
     socials: [],
     shortBio:
       'Специалист по реабилитации, помогает восстановиться после операций, травм и перегрузок. Подбирает комплекс упражнений и профилактику.',
@@ -195,7 +195,7 @@ export const doctors: DoctorProfile[] = [
     medicalSpecialty: 'Лечебный массаж',
     rating: '4.9',
     image: withBasePath('/images/doctors/bembeev-viktor.jpeg'),
-    profileUrl: withBasePath('/doctors/viktor-bembeev/'),
+    profileUrl: '/doctors/viktor-bembeev/',
     socials: [],
     shortBio:
       'Специалист по лечебному массажу с 24-летним стажем. Работает с мышечными зажимами, болевыми синдромами и восстановлением после нагрузок.',
