@@ -56,13 +56,13 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="text-slate-600 hover:text-primary font-medium transition-colors duration-200"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -91,14 +91,14 @@ export function Navbar() {
           <div className="lg:hidden bg-white border-t border-slate-100 py-4 animate-slide-up">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-slate-600 hover:text-primary font-medium px-4 py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
               <div className="px-4 pt-4 border-t border-slate-100">
                 <a

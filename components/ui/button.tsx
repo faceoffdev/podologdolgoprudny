@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Link from 'next/link'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
@@ -39,8 +40,21 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     const classes = cn(buttonVariants({ variant, size, className }))
 
     if (href) {
+      const isExternal = /^([a-z][a-z0-9+.-]*:|\/\/)/i.test(href)
+
+      if (isExternal) {
+        return (
+          <a
+            ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+            href={href}
+            className={classes}
+            {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          />
+        )
+      }
+
       return (
-        <a
+        <Link
           ref={ref as React.ForwardedRef<HTMLAnchorElement>}
           href={href}
           className={classes}

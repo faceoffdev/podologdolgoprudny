@@ -3,6 +3,7 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import Image from 'next/image'
 import { siteConfig } from '@/lib/site-config'
+import Link from 'next/link'
 
 const quickLinks = [
   { name: 'Главная', href: '#home' },
@@ -59,9 +60,9 @@ export function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-slate-400 hover:text-primary transition-colors">
+                  <Link href={link.href} className="text-slate-400 hover:text-primary transition-colors">
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
