@@ -87,28 +87,28 @@ export default function DoctorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {doctors.map((doctor) => (
-              <Card key={doctor.slug} className="h-full overflow-hidden group">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={doctor.image}
-                    alt={`Фото: ${doctor.name}`}
-                    width={480}
-                    height={600}
-                    className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <CardContent className="p-5 text-center space-y-3">
-                  <div>
-                    <p className="text-sm text-slate-500">{doctor.medicalSpecialty}</p>
-                    <p className="text-lg font-semibold text-slate-900">
-                      <Link href={doctor.profileUrl} className="hover:text-primary transition-colors">
-                        {doctor.name}
-                      </Link>
-                    </p>
+              <Link key={doctor.slug} href={doctor.profileUrl} className="hover:text-primary transition-colors">
+                <Card className="h-full overflow-hidden group">
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={doctor.image}
+                      alt={`Фото: ${doctor.name}`}
+                      width={480}
+                      height={600}
+                      className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <p className="text-sm text-slate-600">{doctor.shortBio}</p>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-5 text-center space-y-3">
+                    <div>
+                      <p className="text-sm text-slate-500">{doctor.medicalSpecialty}</p>
+                      <p className="text-lg font-semibold text-slate-900">{doctor.name}</p>
+                    </div>
+                    <p className="text-sm text-slate-600">{doctor.shortBio}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

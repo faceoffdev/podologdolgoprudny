@@ -126,8 +126,8 @@ export function Hero() {
                 Записаться на приём
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button href="/doctors" variant="secondary" size="lg">
-                Подробнее о специалисте
+              <Button href="/about" variant="secondary" size="lg">
+                Подробнее о нас
               </Button>
             </motion.div>
 

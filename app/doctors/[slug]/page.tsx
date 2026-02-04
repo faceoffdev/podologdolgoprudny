@@ -303,30 +303,30 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
             </div>
             <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
               {otherDoctors.map((item) => (
-                <Card key={item.slug} className="overflow-hidden">
-                  <div className="grid sm:grid-cols-2">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={320}
-                      height={400}
-                      className="w-full h-52 sm:h-60 object-cover object-top"
-                    />
-                    <div className="p-5 sm:p-6 space-y-3">
-                      <div>
-                        <p className="text-sm text-slate-500">{item.medicalSpecialty}</p>
-                        <p className="text-lg font-semibold text-slate-900">{item.name}</p>
+                <Link
+                  key={item.slug}
+                  href={item.profileUrl}
+                  className="inline-flex items-center text-primary font-medium hover:text-primary-dark"
+                >
+                  <Card className="overflow-hidden">
+                    <div className="grid sm:grid-cols-2">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={320}
+                        height={400}
+                        className="w-full h-52 sm:h-60 object-cover object-top"
+                      />
+                      <div className="p-5 sm:p-6 space-y-3">
+                        <div>
+                          <p className="text-sm text-slate-500">{item.medicalSpecialty}</p>
+                          <p className="text-lg font-semibold text-slate-900">{item.name}</p>
+                        </div>
+                        <p className="text-sm text-slate-600">{item.shortBio}</p>
                       </div>
-                      <p className="text-sm text-slate-600">{item.shortBio}</p>
-                      <Link
-                        href={item.profileUrl}
-                        className="inline-flex items-center text-primary font-medium hover:text-primary-dark"
-                      >
-                        Подробнее
-                      </Link>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

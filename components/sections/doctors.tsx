@@ -66,76 +66,34 @@ export function Doctors() {
         >
           {doctors.map((doctor, index) => (
             <motion.div key={index} variants={itemVariants} itemScope itemType="https://schema.org/Person">
-              <Card className="h-full overflow-hidden group">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={doctor.image}
-                    alt={doctor.name + ' ' + doctor.specialty}
-                    width={400}
-                    height={500}
-                    itemProp="image"
-                    className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
-                      {doctor.socials.length > 0 ? (
-                        doctor.socials.map((social, socialIndex) => {
-                          const iconSrc = socialIcons[social.type]
-                          const iconColor = social.type === 'instagram' ? '#E1306C' : '#229ED9'
-                          return (
-                            <a
-                              key={`${doctor.name}-${social.type}-${socialIndex}`}
-                              href={social.href}
-                              target="_blank"
-                              rel="noreferrer"
-                              aria-label={social.label}
-                              itemProp="sameAs"
-                              className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-slate-200 hover:scale-110 transition-all"
-                            >
-                              <span
-                                className="w-5 h-5 inline-block"
-                                style={{
-                                  backgroundColor: iconColor,
-                                  maskImage: `url(${iconSrc})`,
-                                  WebkitMaskImage: `url(${iconSrc})`,
-                                  maskSize: 'contain',
-                                  WebkitMaskSize: 'contain',
-                                  maskRepeat: 'no-repeat',
-                                  WebkitMaskRepeat: 'no-repeat',
-                                  maskPosition: 'center',
-                                  WebkitMaskPosition: 'center',
-                                }}
-                              />
-                            </a>
-                          )
-                        })
-                      ) : (
-                        <Link
-                          href={doctor.profileUrl}
-                          className="px-4 py-2 rounded-full bg-white/90 text-slate-700 text-sm font-medium hover:bg-white hover:scale-105 transition-all"
-                        >
-                          Профиль
-                        </Link>
-                      )}
-                    </div>
+              <Link href={doctor.profileUrl} itemProp="url" className="hover:text-primary transition-colors">
+                <Card className="h-full overflow-hidden group">
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={doctor.image}
+                      alt={doctor.name + ' ' + doctor.specialty}
+                      width={400}
+                      height={500}
+                      itemProp="image"
+                      className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                </div>
-                <CardContent className="p-5 text-center">
-                  <p className="text-lg font-semibold text-slate-900 mb-1" itemProp="name">
-                    <Link href={doctor.profileUrl} itemProp="url" className="hover:text-primary transition-colors">
+                  <CardContent className="p-5 text-center">
+                    <p className="text-lg font-semibold text-slate-900 mb-1" itemProp="name">
                       {doctor.name}
-                    </Link>
-                  </p>
-                  <p className="text-slate-500 text-sm mb-3" itemProp="jobTitle">
-                    {doctor.specialty}
-                  </p>
-                  <meta itemProp="medicalSpecialty" content={doctor.medicalSpecialty} />
-                  <div itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
-                    <meta itemProp="name" content="Центр Подологии и Остеопатии" />
-                  </div>
-                </CardContent>
-              </Card>
+                    </p>
+                    <p className="text-slate-500 text-sm mb-3" itemProp="jobTitle">
+                      {doctor.specialty}
+                    </p>
+                    <meta itemProp="medicalSpecialty" content={doctor.medicalSpecialty} />
+                    <div itemProp="worksFor" itemScope itemType="https://schema.org/Organization">
+                      <meta itemProp="name" content="Центр Подологии и Остеопатии" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
