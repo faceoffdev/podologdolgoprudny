@@ -8,6 +8,13 @@ export const siteConfig = {
   },
   bookingUrl: 'https://w1058312.yclients.com/',
   email: 'info@podologdolgoprudny.ru',
+  address: {
+    label: 'Лихачёвское ш., 1, корп. 4, Долгопрудный',
+    mapHref: 'https://yandex.ru/maps/-/CPAFbZYd',
+    locality: 'Долгопрудный',
+    country: 'RU',
+  },
+  schedule: 'ПН-ВС: 07:30 - 22:00',
   socials: [
     {
       label: 'Instagram',

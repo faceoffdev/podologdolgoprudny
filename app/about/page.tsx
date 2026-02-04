@@ -8,16 +8,12 @@ import { Calendar } from 'lucide-react'
 import { withBasePath } from '@/lib/paths'
 import { GallerySection, type GalleryImage } from '@/components/about/gallery-section'
 import { Testimonials } from '@/components/sections/testimonials'
-import { YandexMap } from '@/components/sections/yandex-map'
-import {
-  EquipmentSection,
-  QualitySection,
-  SocialsSection,
-} from '@/components/about/about-extras'
+import { EquipmentSection, QualitySection, SocialsSection } from '@/components/about/about-extras'
 
 export const metadata: Metadata = {
   title: 'О нас — Центр Подологии и Остеопатии в Долгопрудном',
-  description: 'Центр Подологии и Остеопатии в Долгопрудном работает с 2015 года. Высокотехнологичный подологический кабинет и кабинет мануальных практик, опытные специалисты и индивидуальный подход.',
+  description:
+    'Центр Подологии и Остеопатии в Долгопрудном работает с 2015 года. Высокотехнологичный подологический кабинет и кабинет мануальных практик, опытные специалисты и индивидуальный подход.',
   alternates: {
     canonical: '/about',
   },
@@ -91,18 +87,15 @@ const equipmentItems = [
   },
   {
     title: 'Медицинская стерилизация инструментов',
-    description:
-      'Многоэтапная обработка с документируемыми режимами стерилизации и хранением в крафт-пакетах.',
+    description: 'Многоэтапная обработка с документируемыми режимами стерилизации и хранением в крафт-пакетах.',
   },
   {
     title: 'Увеличительная оптика и освещение',
-    description:
-      'Точное освещение и визуальный контроль помогают выполнять процедуры безопасно и аккуратно.',
+    description: 'Точное освещение и визуальный контроль помогают выполнять процедуры безопасно и аккуратно.',
   },
   {
     title: 'Качественные материалы',
-    description:
-      'Используем сертифицированные средства для подологической практики и ухода.',
+    description: 'Используем сертифицированные средства для подологической практики и ухода.',
   },
 ]
 
@@ -210,7 +203,6 @@ export default function AboutPage() {
       <Testimonials />
       <SocialsSection socials={siteConfig.socials} />
       <CTA />
-      <YandexMap />
       <Footer />
     </main>
   )

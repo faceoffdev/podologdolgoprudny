@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: 'Центр Подологии и Остеопатии в Долгопрудном',
   description: 'Подологическая и остеопатическая помощь, медицинский педикюр и коррекция ногтей. Запись на приём онлайн и по телефону.',
   metadataBase: new URL(siteConfig.siteUrl),
+  openGraph: {
+    title: 'Центр Подологии и Остеопатии в Долгопрудном',
+    description:
+      'Подологическая и остеопатическая помощь, медицинский педикюр и коррекция ногтей. Запись на приём онлайн и по телефону.',
+    url: siteConfig.siteUrl,
+    type: 'website',
+  },
   robots: {
     index: false,
     follow: false,

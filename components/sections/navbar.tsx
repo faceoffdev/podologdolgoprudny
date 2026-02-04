@@ -14,7 +14,7 @@ const navLinks = [
   { name: 'Услуги', href: '/#services' },
   { name: 'Специалисты', href: '/doctors' },
   { name: 'О нас', href: '/about' },
-  { name: 'Контакты', href: '/#contact' },
+  { name: 'Контакты', href: '/contacts' },
 ]
 
 export function Navbar() {

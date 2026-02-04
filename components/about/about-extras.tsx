@@ -1,17 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { SocialLinks, type SocialLink } from '@/components/ui/social-links'
 
 export type EquipmentItem = {
   title: string
   description: string
-}
-
-export type SocialLink = {
-  label: string
-  href: string
-  icon: string
-  color?: string
 }
 
 const fadeInUp = {
@@ -114,38 +108,13 @@ export function SocialsSection({ socials }: { socials: readonly SocialLink[] }) 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
-            className="flex flex-wrap gap-4"
           >
-            {socials.map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={social.label}
-                title={social.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition hover:border-primary/40"
-              >
-                <span
-                  className="w-5 h-5 inline-block"
-                  style={{
-                    backgroundColor: social.color ?? 'currentColor',
-                    maskImage: `url(${social.icon})`,
-                    WebkitMaskImage: `url(${social.icon})`,
-                    maskSize: 'contain',
-                    WebkitMaskSize: 'contain',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskPosition: 'center',
-                    WebkitMaskPosition: 'center',
-                  }}
-                />
-              </motion.a>
-            ))}
+            <SocialLinks
+              socials={socials}
+              className="flex flex-wrap gap-4"
+              itemClassName="h-12 w-12 rounded-full border border-slate-200 bg-white shadow-sm transition hover:border-primary/40"
+              iconClassName="w-5 h-5"
+            />
           </motion.div>
         </div>
       </div>

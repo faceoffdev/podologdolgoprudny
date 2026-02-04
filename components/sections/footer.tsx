@@ -1,16 +1,16 @@
 'use client'
 
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
-import Image from 'next/image'
 import { siteConfig } from '@/lib/site-config'
 import Link from 'next/link'
+import { SocialLinks } from '@/components/ui/social-links'
 
 const quickLinks = [
   { name: 'Главная', href: '/#home' },
   { name: 'Услуги', href: '/#services' },
   { name: 'Специалисты', href: '/doctors' },
   { name: 'О нас', href: '/about' },
-  { name: 'Контакты', href: '/#contact' },
+  { name: 'Контакты', href: '/contacts' },
 ]
 
 const services = [
@@ -19,8 +19,6 @@ const services = [
   { name: 'Остеопатия', href: '#services' },
   { name: 'Коррекция ногтей', href: '#services' },
 ]
-
-const socialLinks = siteConfig.socials
 
 export function Footer() {
   return (
@@ -39,18 +37,13 @@ export function Footer() {
               ведут опытные подологи, врач ортопед-остеопат и массажисты.
             </p>
             <div className="flex gap-3" itemProp="sameAs">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 transition-all"
-                >
-                  <Image src={social.icon} alt={social.label} width={20} height={20} className="w-5 h-5" />
-                </a>
-              ))}
+              <SocialLinks
+                socials={siteConfig.socials}
+                className="flex gap-3 text-white"
+                itemClassName="w-10 h-10 bg-slate-800 rounded-lg hover:bg-primary hover:scale-110 transition-all"
+                iconClassName="w-5 h-5"
+                monochrome
+              />
             </div>
           </div>
 
@@ -95,17 +88,17 @@ export function Footer() {
                 <MapPin className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                 <span className="text-slate-400 hover:text-primary">
                   <a
-                    href="https://yandex.ru/maps/-/CPAFbZYd"
+                    href={siteConfig.address.mapHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     itemProp="streetAddress"
                   >
-                    Лихачёвское ш., 1, корп. 4, Долгопрудный
+                    {siteConfig.address.label}
                   </a>
                 </span>
               </li>
-              <meta itemProp="addressLocality" content="Долгопрудный" />
-              <meta itemProp="addressCountry" content="RU" />
+              <meta itemProp="addressLocality" content={siteConfig.address.locality} />
+              <meta itemProp="addressCountry" content={siteConfig.address.country} />
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-white flex-shrink-0" />
                 <a
@@ -128,7 +121,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-white flex-shrink-0" />
-                <span className="text-slate-400">ПН-ВС: 07:30 - 21:00</span>
+                <span className="text-slate-400">{siteConfig.schedule}</span>
               </li>
             </ul>
           </div>
