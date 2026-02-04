@@ -5,12 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { doctors } from '@/lib/doctors'
-import { withBasePath } from '@/lib/paths'
-
-const socialIcons = {
-  instagram: withBasePath('/icons/instagram.svg'),
-  telegram: withBasePath('/icons/telegram.svg'),
-} as const
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

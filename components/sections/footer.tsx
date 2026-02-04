@@ -6,11 +6,11 @@ import { siteConfig } from '@/lib/site-config'
 import Link from 'next/link'
 
 const quickLinks = [
-  { name: 'Главная', href: '#home' },
-  { name: 'Услуги', href: '#services' },
+  { name: 'Главная', href: '/#home' },
+  { name: 'Услуги', href: '/#services' },
   { name: 'Специалисты', href: '/doctors' },
-  { name: 'О нас', href: '#about' },
-  { name: 'Контакты', href: '#contact' },
+  { name: 'О нас', href: '/about' },
+  { name: 'Контакты', href: '/#contact' },
 ]
 
 const services = [

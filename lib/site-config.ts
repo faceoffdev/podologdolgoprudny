@@ -13,11 +13,13 @@ export const siteConfig = {
       label: 'Instagram',
       href: 'https://www.instagram.com/tatiana_asteri',
       icon: withBasePath('/icons/instagram.svg'),
+      color: '#E1306C',
     },
     {
       label: 'Telegram',
       href: 'https://t.me/podology_osteopathy',
       icon: withBasePath('/icons/telegram.svg'),
+      color: '#229ED9',
     },
   ],
 } as const

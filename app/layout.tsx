@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Центр Подологии и Остеопатии в Долгопрудном',
-  description:
-    'Подологическая и остеопатическая помощь, медицинский педикюр и коррекция ногтей. Запись на приём онлайн и по телефону.',
+  description: 'Подологическая и остеопатическая помощь, медицинский педикюр и коррекция ногтей. Запись на приём онлайн и по телефону.',
+  metadataBase: new URL(siteConfig.siteUrl),
   robots: {
     index: false,
     follow: false,

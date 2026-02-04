@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${doctor.name} — ${doctor.medicalSpecialty}`,
     description: doctor.shortBio,
+    alternates: {
+      canonical: doctor.profileUrl,
+    },
   }
 }
 
@@ -49,14 +52,13 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
 
   const siteUrl = siteConfig.siteUrl
   const organizationId = `${siteUrl}/#organization`
-  const organizationUrl = siteUrl
 
   const organizationJson = {
     '@context': 'https://schema.org',
     '@type': 'MedicalBusiness',
     '@id': organizationId,
     name: 'Центр Подологии и Остеопатии',
-    url: organizationUrl,
+    url: siteUrl,
     telephone: siteConfig.phone.display,
     email: siteConfig.email,
     image: `${siteUrl}${withBasePath('/images/logo.svg')}`,

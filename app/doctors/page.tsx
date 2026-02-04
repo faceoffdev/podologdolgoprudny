@@ -11,8 +11,10 @@ import { withBasePath } from '@/lib/paths'
 
 export const metadata: Metadata = {
   title: 'Наши специалисты',
-  description:
-    'Профили специалистов центра подологии и остеопатии: подологи, врач-остеопат и реабилитолог. Запишитесь на прием онлайн.',
+  description: 'Профили специалистов центра подологии и остеопатии: подологи, врач-остеопат и реабилитолог. Запишитесь на прием онлайн.',
+  alternates: {
+    canonical: '/doctors',
+  },
 }
 
 export default function DoctorsPage() {

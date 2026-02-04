@@ -10,11 +10,11 @@ import { siteConfig } from '@/lib/site-config'
 import { withBasePath } from '@/lib/paths'
 
 const navLinks = [
-  { name: 'Главная', href: '#home' },
-  { name: 'Услуги', href: '#services' },
+  { name: 'Главная', href: '/#home' },
+  { name: 'Услуги', href: '/#services' },
   { name: 'Специалисты', href: '/doctors' },
-  { name: 'О нас', href: '#about' },
-  { name: 'Контакты', href: '#contact' },
+  { name: 'О нас', href: '/about' },
+  { name: 'Контакты', href: '/#contact' },
 ]
 
 export function Navbar() {
@@ -46,6 +46,7 @@ export function Navbar() {
               width={60}
               height={60}
               className="flex items-center justify-center"
+              style={{ width: '60px', height: '60px' }}
               priority
             />
             <span className="font-bold text-xl text-slate-900 leading-tight max-w-[12rem] whitespace-normal break-words">
