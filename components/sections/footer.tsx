@@ -162,12 +162,12 @@ export function Footer() {
             © {new Date().getFullYear()} Центр Подологии и Остеопатии. Все права защищены.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-slate-400 hover:text-primary text-sm transition-colors">
+            <Link href="/privacy" className="text-slate-400 hover:text-primary text-sm transition-colors">
               Политика конфиденциальности
-            </a>
-            <a href="#" className="text-slate-400 hover:text-primary text-sm transition-colors">
+            </Link>
+            <Link href="/terms" className="text-slate-400 hover:text-primary text-sm transition-colors">
               Пользовательское соглашение
-            </a>
+            </Link>
           </div>
         </div>
       </div>
