@@ -65,7 +65,7 @@ export function CTA() {
                   className="inline-flex items-center justify-center gap-2 text-white hover:text-white/80 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  <span className="font-medium">Или позвоните {siteConfig.phone.display}</span>
+                  <span className="font-medium">{siteConfig.phone.display}</span>
                 </a>
               </motion.div>
             </div>
@@ -83,7 +83,7 @@ export function CTA() {
                 <p className="text-white/70">Поддержка</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
-                <p className="text-4xl font-bold text-white mb-2">3+</p>
+                <p className="text-4xl font-bold text-white mb-2">5+</p>
                 <p className="text-white/70">Опытных специалистов</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
@@ -91,7 +91,7 @@ export function CTA() {
                 <p className="text-white/70">Уровень удовлетворенности</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
-                <p className="text-4xl font-bold text-white mb-2">3000+</p>
+                <p className="text-4xl font-bold text-white mb-2">5000+</p>
                 <p className="text-white/70">Довольные пациенты</p>
               </div>
             </motion.div>

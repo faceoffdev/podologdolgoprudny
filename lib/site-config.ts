@@ -3,7 +3,7 @@ import { withBasePath } from './paths'
 export const siteConfig = {
   siteUrl: 'https://podologdolgoprudny.ru',
   phone: {
-    display: '+7 914 861-82-42',
+    display: '+7 914 861-82-42',
     href: 'tel:+79148618242',
   },
   bookingUrl: 'https://w1058312.yclients.com/',

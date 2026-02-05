@@ -12,8 +12,7 @@ import { EquipmentSection, QualitySection, SocialsSection } from '@/components/a
 
 export const metadata: Metadata = {
   title: 'О нас — Центр Подологии и Остеопатии в Долгопрудном',
-  description:
-    'Центр Подологии и Остеопатии в Долгопрудном работает с 2015 года. Высокотехнологичный подологический кабинет и кабинет мануальных практик, опытные специалисты и индивидуальный подход.',
+  description: 'Центр Подологии и Остеопатии в Долгопрудном работает с 2015 года. Высокотехнологичный подологический кабинет и кабинет мануальных практик, опытные специалисты и индивидуальный подход.',
   alternates: {
     canonical: '/about',
   },
@@ -21,34 +20,68 @@ export const metadata: Metadata = {
 
 const stats = [
   { value: '10 лет', label: 'Опыт работы центра' },
-  { value: '3000+', label: 'Пациентов получили помощь' },
+  { value: '5000+', label: 'Пациентов получили помощь' },
   { value: '5.0', label: 'Средний рейтинг по отзывам' },
-  { value: '2 кабинета', label: 'Подология и мануальные практики' },
+  { value: '3 кабинета', label: 'Подология, озонотерапия и мануальные практики' },
 ]
 
 const centerGallery: GalleryImage[] = [
   {
-    src: withBasePath('/images/about/center-1.jpg'),
+    src: withBasePath('/images/about/center-1.webp'),
     alt: 'Центр подологии Долгопрудный',
   },
   {
-    src: withBasePath('/images/about/center-2.jpg'),
+    src: withBasePath('/images/about/center-2.webp'),
+    alt: 'Вручение сертификата подологу Солохе Татьяне в Долгопрудном',
+  },
+  {
+    src: withBasePath('/images/about/center-3.webp'),
     alt: 'Солоха Татьяна подолог Долгопрудный',
   },
   {
-    src: withBasePath('/images/about/center-3.jpg'),
-    alt: 'Подолог Долгопрудный',
+    src: withBasePath('/images/about/center-4.webp'),
+    alt: 'Кабинет подологии Долгопрудный',
   },
 ]
 
 const manualPracticeGallery: GalleryImage[] = [
   {
-    src: withBasePath('/images/about/manual-1.jpg'),
-    alt: 'Остеопат Долгопрудный',
+    src: withBasePath('/images/about/manual-1.webp'),
+    alt: 'Кабинет мануальных практик',
   },
   {
-    src: withBasePath('/images/about/manual-2.jpg'),
-    alt: 'Кабинет мануальных практик',
+    src: withBasePath('/images/about/manual-2.webp'),
+    alt: 'Массажист Бембеев Виктор Шукраевич Долгопрудный',
+  },
+]
+
+const ozonTherapyGallery: GalleryImage[] = [
+  {
+    src: withBasePath('/images/about/ozon-1.webp'),
+    alt: 'Кабинет озонотерапии и косметологии',
+  },
+]
+
+const equipmentGallery: GalleryImage[] = [
+  {
+    src: withBasePath('/images/about/equipment-1.webp'),
+    alt: 'Аппарат SkinHale',
+  },
+  {
+    src: withBasePath('/images/about/equipment-2.webp'),
+    alt: 'Подологическое оборудование центра',
+  },
+  {
+    src: withBasePath('/images/about/equipment-3.webp'),
+    alt: 'Аппараты для подологических процедур',
+  },
+  {
+    src: withBasePath('/images/about/equipment-4.webp'),
+    alt: 'Оснащение кабинета подологии',
+  },
+  {
+    src: withBasePath('/images/about/equipment-5.webp'),
+    alt: 'Моечно-дезинфицирующая машина Melatherm 10',
   },
 ]
 
@@ -81,21 +114,20 @@ const worksGallery: GalleryImage[] = [
 
 const equipmentItems = [
   {
-    title: 'Современные подологические аппараты',
-    description:
-      'Работаем на профессиональном оборудовании с регулируемыми режимами для бережной обработки и точной коррекции.',
+    title: 'Аэродинамическая процедура SkinHale',
+    description: 'Проводим аппаратную процедуру для бережного ухода и восстановительных программ.',
   },
   {
-    title: 'Медицинская стерилизация инструментов',
-    description: 'Многоэтапная обработка с документируемыми режимами стерилизации и хранением в крафт-пакетах.',
+    title: 'Melatherm 10 — моечно-дезинфицирующая машина',
+    description: 'Автоматизированная обработка инструмента с контролем режимов для стабильной стерильности.',
   },
   {
-    title: 'Увеличительная оптика и освещение',
-    description: 'Точное освещение и визуальный контроль помогают выполнять процедуры безопасно и аккуратно.',
+    title: 'Профессиональные подологические аппараты',
+    description: 'Точные режимы и насадки для безопасной обработки и коррекции сложных случаев.',
   },
   {
-    title: 'Качественные материалы',
-    description: 'Используем сертифицированные средства для подологической практики и ухода.',
+    title: 'Оптика, освещение и расходные материалы',
+    description: 'Увеличительная оптика, точный свет и сертифицированные материалы для комфортных процедур.',
   },
 ]
 
@@ -122,9 +154,10 @@ export default function AboutPage() {
                 Центр Подологии и Остеопатии — город Долгопрудный
               </h1>
               <p className="text-lg text-slate-600">
-                Центр Подологии и Остеопатии в Долгопрудном организован в сентябре 2015 года. Здесь имеется
-                высокотехнологично оснащённый подологический кабинет, а также кабинет мануальных,
-                телесно-ориентированных практик. Приём ведут опытные подологи, врач ортопед-остеопат и массажисты.
+                Мы работаем в Долгопрудном с 2015 года и объединяем три направления в одном центре: подология,
+                озонотерапия и мануальные практики. Для приёма предусмотрены отдельные кабинеты, современное
+                оборудование и продуманный комфорт. Ведут приём опытные подологи, врач ортопед-остеопат, врач-
+                реабилитолог и массажисты. Также доступны гирудотерапия и аэродинамическая процедура SkinHale.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" size="lg">
@@ -156,9 +189,10 @@ export default function AboutPage() {
                 Подология — специализация на стыке эстетики и медицины
               </h2>
               <p className="text-slate-600">
-                Подологи работают с проблемными стопами и изменёнными ногтевыми пластинами, мозолями, трещинами,
-                локальным гиперкератозом, ногтями, склонными к врастанию и скручиванию. Специалисты владеют методами
-                коррекции деформированных ногтей.
+                Подологи помогают при проблемах стоп и ногтевых пластин: мозоли, трещины, локальный гиперкератоз,
+                врастание и деформация ногтей. Используем современные методы коррекции и бережной обработки, чтобы
+                восстановить комфорт и внешний вид стоп. Дополняем подологию озонотерапией, гирудотерапией и
+                аэродинамической процедурой SkinHale.
               </p>
             </div>
             <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-lg">
@@ -176,7 +210,7 @@ export default function AboutPage() {
         title="Центр Подологии и Остеопатии — Долгопрудный"
         description="Фотографии кабинетов и специалистов центра."
         images={centerGallery}
-        columns="md:grid-cols-3"
+        columns="md:grid-cols-2"
         sizes="(min-width: 768px) 33vw, 100vw"
         sectionClassName="py-12 lg:py-20 bg-slate-50"
       />
@@ -187,6 +221,23 @@ export default function AboutPage() {
         images={manualPracticeGallery}
         columns="md:grid-cols-2"
         sizes="(min-width: 768px) 50vw, 100vw"
+      />
+
+      <GallerySection
+        title="Кабинет озонотерапии и косметологии"
+        description="Фотографии кабинета для озонотерапии и уходовых процедур."
+        images={ozonTherapyGallery}
+        columns="md:grid-cols-2"
+        sizes="(min-width: 768px) 50vw, 100vw"
+        sectionClassName="py-12 lg:py-20 bg-slate-50"
+      />
+
+      <GallerySection
+        title="Оборудование центра"
+        description="Оснащение кабинетов и профессиональные аппараты центра."
+        images={equipmentGallery}
+        columns="sm:grid-cols-2 lg:grid-cols-3"
+        sizes="(min-width: 1024px) 25vw, 100vw"
       />
 
       <GallerySection
