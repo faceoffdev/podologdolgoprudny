@@ -10,14 +10,22 @@ import { siteConfig } from '@/lib/site-config'
 import { withBasePath } from '@/lib/paths'
 
 export const metadata: Metadata = {
-  title: 'Наши специалисты',
-  description: 'Команда центра подологии и остеопатии: три подолога, врач-остеопат, врач-реабилитолог и специалист по лечебному массажу. Комплексный подход к здоровью стоп и восстановлению.',
+  title: 'Специалисты центра подологии и остеопатии',
+  description:
+    'Команда центра: подологи, врач-остеопат, реабилитолог и специалист по лечебному массажу. Выберите специалиста и перейдите к его услугам и ценам.',
   alternates: {
-    canonical: '/doctors',
+    canonical: '/specialisty/',
+  },
+  openGraph: {
+    title: 'Специалисты центра подологии и остеопатии',
+    description:
+      'Подологи, врач-остеопат, реабилитолог и специалист по лечебному массажу. Детальные профили специалистов и услуги.',
+    url: '/specialisty/',
+    type: 'website',
   },
 }
 
-export default function DoctorsPage() {
+export default function SpecialistsPage() {
   const siteUrl = siteConfig.siteUrl
   const organizationId = `${siteUrl}/#organization`
 
@@ -33,10 +41,29 @@ export default function DoctorsPage() {
     sameAs: siteConfig.socials.map((social) => social.href),
   }
 
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Специалисты',
+        item: `${siteUrl}/specialisty/`,
+      },
+    ],
+  }
+
   const itemListJson = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Наши специалисты',
+    name: 'Специалисты центра подологии и остеопатии',
     itemListElement: doctors.map((doctor, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -58,6 +85,7 @@ export default function DoctorsPage() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJson) }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
@@ -75,12 +103,11 @@ export default function DoctorsPage() {
               Команда центра
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
-              Специалисты в центре подологии и остеопатии
+              Специалисты центра подологии и остеопатии
             </h1>
             <p className="text-base sm:text-lg text-slate-600">
-              В команде — три подолога, врач-остеопат, врач-реабилитолог и специалист по лечебному массажу. Помогаем при
-              проблемах стоп и ногтей, болевых синдромах и восстановлении после травм, подбираем персональные планы
-              процедур и профилактики.
+              Врачи и специалисты центра ведут прием по подологии, ортониксии, реабилитации и лечебному массажу. На
+              странице каждого специалиста доступны профиль, услуги и переход на страницу цены.
             </p>
           </div>
         </div>
@@ -100,7 +127,6 @@ export default function DoctorsPage() {
                       height={600}
                       className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <CardContent className="p-5 text-center space-y-3">

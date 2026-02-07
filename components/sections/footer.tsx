@@ -7,17 +7,17 @@ import { SocialLinks } from '@/components/ui/social-links'
 
 const quickLinks = [
   { name: 'Главная', href: '/#home' },
-  { name: 'Услуги', href: '/#services' },
-  { name: 'Специалисты', href: '/doctors' },
+  { name: 'Услуги', href: '/uslugi/' },
+  { name: 'Специалисты', href: '/specialisty/' },
   { name: 'О нас', href: '/about' },
   { name: 'Контакты', href: '/contacts' },
 ]
 
 const services = [
-  { name: 'Консультация подолога', href: '#services' },
-  { name: 'Медицинский педикюр', href: '#services' },
-  { name: 'Остеопатия', href: '#services' },
-  { name: 'Коррекция ногтей', href: '#services' },
+  { name: 'Консультация подолога', href: '/uslugi/konsultatsiya-podologa/' },
+  { name: 'Медицинский педикюр', href: '/uslugi/meditsinskiy-pedikyur/' },
+  { name: 'Остеопатический прием', href: '/uslugi/osteopaticheskiy-priem/' },
+  { name: 'Коррекция вросшего ногтя', href: '/uslugi/korrektsiya-vrosshego-nogtya/' },
 ]
 
 export function Footer() {
@@ -67,9 +67,9 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <a href={service.href} className="text-slate-400 hover:text-primary transition-colors">
+                  <Link href={service.href} className="text-slate-400 hover:text-primary transition-colors">
                     {service.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

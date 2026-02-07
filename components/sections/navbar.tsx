@@ -11,8 +11,8 @@ import { withBasePath } from '@/lib/paths'
 
 const navLinks = [
   { name: 'Главная', href: '/#home' },
-  { name: 'Услуги', href: '/#services' },
-  { name: 'Специалисты', href: '/doctors' },
+  { name: 'Услуги', href: '/uslugi/' },
+  { name: 'Специалисты', href: '/specialisty/' },
   { name: 'О нас', href: '/about' },
   { name: 'Контакты', href: '/contacts' },
 ]

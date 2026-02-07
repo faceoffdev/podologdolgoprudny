@@ -1,99 +1,17 @@
 'use client'
 
 import { motion, type Variants } from 'framer-motion'
-import Image from 'next/image'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { withBasePath } from '@/lib/paths'
+import { formatPriceRange, getServicePriceRange, getServicesByCategory, serviceCategories } from '@/lib/services'
 
-const services = [
-  {
-    img: withBasePath('/images/services/img-1.png'),
-    title: 'Коррекция ногтей',
-    list: [
-      {
-        name: 'Решение проблем вросшего ногтя',
-        link: '#',
-      },
-      {
-        name: 'Установка скобы ЗТО и Фрезера',
-        link: '#',
-      },
-      {
-        name: 'Установка титановой нити',
-        link: '#',
-      },
-      {
-        name: 'Специальная скоба',
-        link: '#',
-      },
-    ],
-  },
-  {
-    img: withBasePath('/images/services/img-2.png'),
-    title: 'Мозоли и трещины',
-    list: [
-      {
-        name: 'Удаление стержневой мозоли',
-        link: '#',
-      },
-      {
-        name: 'Обработка натоптышей',
-        link: '#',
-      },
-      {
-        name: 'Обработка стопы (в том числе диабетической)',
-        link: '#',
-      },
-      {
-        name: 'Удаление бородавок',
-        link: '#',
-      },
-    ],
-  },
-  {
-    img: withBasePath('/images/services/img-3.png'),
-    title: 'Медицинский педикюр',
-    list: [
-      {
-        name: 'Услуга #1',
-        link: '#',
-      },
-      {
-        name: 'EX Обработка стоп при гипергидрозе',
-        link: '#',
-      },
-      {
-        name: 'Гигиенический аппаратный педикюр',
-        link: '#',
-      },
-      {
-        name: 'Изготовление индивидуальных ортезов',
-        link: '#',
-      },
-    ],
-  },
-  {
-    img: withBasePath('/images/services/img-4.png'),
-    title: 'Грибок ногтей',
-    list: [
-      {
-        name: 'Аппаратная обработка ногтевых пластин',
-        link: '#',
-      },
-      {
-        name: 'Устранение онихомикоза',
-        link: '#',
-      },
-      {
-        name: 'Обработка противогрибковыми препаратами',
-        link: '#',
-      },
-      {
-        name: 'Педикюр для пожилых',
-        link: '#',
-      },
-    ],
-  },
+const featuredCategorySlugs = [
+  'podologiya',
+  'ortoniksiya',
+  'vrosshiy-nogot',
+  'onihomikoz-dermatomikoz',
+  'osteopatiya',
+  'plazmodinamicheskoe-vozdeystvie-gelios',
 ]
 
 const containerVariants: Variants = {
@@ -119,10 +37,27 @@ const itemVariants: Variants = {
 }
 
 export function Services() {
+  const serviceGroups = featuredCategorySlugs
+    .map((categorySlug) => {
+      const category = serviceCategories.find((item) => item.slug === categorySlug)
+      if (!category) {
+        return null
+      }
+
+      const categoryServices = getServicesByCategory(category.slug)
+
+      return {
+        slug: category.slug,
+        title: category.name,
+        totalServices: categoryServices.length,
+        services: categoryServices.slice(0, 3),
+      }
+    })
+    .filter((group) => group !== null)
+
   return (
-    <section id="services" className="py-10 lg:py-24 bg-slate-50" itemScope itemType="https://schema.org/Service">
+    <section id="services" className="py-10 lg:py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,43 +68,50 @@ export function Services() {
           <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Наши услуги
           </span>
-          <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Подологические услуги в Долгопрудном</h1>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+            Подологические услуги и цены в Долгопрудном
+          </h2>
           <p className="text-lg text-slate-600">
-            Подологи работают с проблемными стопами и изменёнными ногтевыми пластинами, мозолями, трещинами, локальным
-            гиперкератозом, ногтями, склонными к врастанию, скручиванию. Владеют методами коррекции деформированных
-            ногтей.
+            Актуальные услуги центра с переходом на детальные страницы: описание, диапазон цен и специалисты, которые
+            выполняют процедуру.
           </p>
+          <Link href="/uslugi/" className="inline-flex mt-6 text-primary font-semibold hover:text-primary-dark">
+            Смотреть все услуги и цены
+          </Link>
         </motion.div>
 
-        {/* Services Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
-          {services.map((service, index) => (
-            <motion.div key={index} variants={itemVariants} itemScope itemType="https://schema.org/Service">
+          {serviceGroups.map((group) => (
+            <motion.div key={group.slug} variants={itemVariants}>
               <Card className="h-full group cursor-pointer">
                 <CardContent className="p-6 lg:p-8">
-                  <Image
-                    src={service.img}
-                    alt={`Услуга: ${service.title}`}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <p className="text-xl font-semibold text-slate-900 mb-3" itemProp="name">
-                    {service.title}
-                  </p>
+                  <p className="text-xl font-semibold text-slate-900 mb-3">{group.title}</p>
                   <ul className="text-slate-600 leading-relaxed list-disc list-inside space-y-2">
-                    {service.list.map((item, idx) => (
-                      <li key={idx} itemProp="description">
-                        <a href={item.link}>{item.name}</a>
+                    {group.services.map((service) => (
+                      <li key={service.slug}>
+                        <Link href={service.profileUrl} className="hover:text-primary transition-colors">
+                          {service.name}
+                        </Link>{' '}
+                        <span className="text-slate-500">({formatPriceRange(getServicePriceRange(service))})</span>
                       </li>
                     ))}
                   </ul>
+                  {group.totalServices > 3 && (
+                    <p className="mt-4">
+                      <Link
+                        href={`/uslugi/${group.slug}/`}
+                        className="text-primary font-medium hover:text-primary-dark"
+                      >
+                        Подробнее по категории
+                      </Link>
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

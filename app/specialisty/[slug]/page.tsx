@@ -2,13 +2,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Calendar, Phone, CheckCircle2, GraduationCap, Award, Clock } from 'lucide-react'
+import { Calendar, Phone, GraduationCap, Award, Clock } from 'lucide-react'
 import { Navbar } from '@/components/sections/navbar'
 import { Footer } from '@/components/sections/footer'
 import { CTA } from '@/components/sections/cta'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { DoctorServicesList } from '@/components/specialists/doctor-services-list'
 import { doctors, findDoctorBySlug } from '@/lib/doctors'
+import { findServicesByDoctorSlug } from '@/lib/services'
 import { siteConfig } from '@/lib/site-config'
 import { withBasePath } from '@/lib/paths'
 
@@ -30,10 +32,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${doctor.name} — ${doctor.medicalSpecialty}`,
+    title: `${doctor.name} - ${doctor.medicalSpecialty}`,
     description: doctor.shortBio,
     alternates: {
       canonical: doctor.profileUrl,
+    },
+    openGraph: {
+      title: `${doctor.name} - ${doctor.medicalSpecialty}`,
+      description: doctor.shortBio,
+      url: doctor.profileUrl,
+      type: 'profile',
+      images: [{ url: doctor.image }],
     },
   }
 }
@@ -45,6 +54,8 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
   if (!doctor) {
     notFound()
   }
+
+  const doctorServices = findServicesByDoctorSlug(doctor.slug)
 
   const otherDoctors = doctors
     .filter((item) => item.slug !== doctor.slug && item.medicalSpecialty === doctor.medicalSpecialty)
@@ -65,6 +76,31 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
     sameAs: siteConfig.socials.map((social) => social.href),
   }
 
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Специалисты',
+        item: `${siteUrl}/specialisty/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: doctor.name,
+        item: `${siteUrl}${doctor.profileUrl}`,
+      },
+    ],
+  }
+
   const personJson = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -79,14 +115,35 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
       '@type': 'MedicalBusiness',
       name: 'Центр Подологии и Остеопатии',
     },
+    knowsAbout: doctorServices.map((service) => service.name),
     ...(doctor.socials.length > 0 ? { sameAs: doctor.socials.map((social) => social.href) } : {}),
+  }
+
+  const offersJson = {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: `Услуги специалиста ${doctor.name}`,
+    itemListElement: doctorServices.map((service) => {
+      return {
+        '@type': 'Offer',
+        price: service.price.min || service.price.max,
+        priceCurrency: 'RUB',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name,
+          url: `${siteUrl}${service.profileUrl}`,
+        },
+      }
+    }),
   }
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJson) }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,7 +152,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
               Главная
             </Link>
             <span>/</span>
-            <Link href="/doctors" className="hover:text-primary transition-colors">
+            <Link href="/specialisty/" className="hover:text-primary transition-colors">
               Специалисты
             </Link>
             <span>/</span>
@@ -179,34 +236,31 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
 
             <Card>
               <CardHeader>
-                <CardTitle>Основные услуги</CardTitle>
+                <CardTitle>Услуги специалиста</CardTitle>
               </CardHeader>
-              <CardContent className="grid sm:grid-cols-2 gap-3 text-slate-600">
-                {doctor.services.map((service) => (
-                  <div key={service} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5" />
-                    <span>{service}</span>
-                  </div>
-                ))}
+              <CardContent>
+                <DoctorServicesList services={doctorServices} initialVisibleCount={5} />
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Образование</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {doctor.education.map((item) => (
-                  <div key={`${item.year}-${item.title}`} className="flex items-start gap-3">
-                    <GraduationCap className="w-5 h-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="text-sm text-slate-500">{item.year}</p>
-                      <p className="text-slate-700 font-medium">{item.title}</p>
+            {doctor.education.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Образование</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {doctor.education.map((item) => (
+                    <div key={`${item.year}-${item.title}`} className="flex items-start gap-3">
+                      <GraduationCap className="w-5 h-5 text-primary mt-0.5" />
+                      <div>
+                        <p className="text-sm text-slate-500">{item.year}</p>
+                        <p className="text-slate-700 font-medium">{item.title}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           <div className="space-y-5 sm:space-y-6">
@@ -237,7 +291,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
                 <CardContent className="space-y-3 text-slate-600">
                   {doctor.certifications.map((item) => (
                     <div key={item} className="flex items-start gap-2">
-                      <Award className="w-5 h-5 text-primary mt-0.5" />
+                      <Award className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                       <span>{item}</span>
                     </div>
                   ))}
