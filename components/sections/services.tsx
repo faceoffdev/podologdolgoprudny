@@ -68,9 +68,7 @@ export function Services() {
           <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Наши услуги
           </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Услуги и цены центра в Долгопрудном
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Услуги и цены центра в Долгопрудном</h2>
           <p className="text-lg text-slate-600">
             Актуальные услуги с переходом на детальные страницы: описание, диапазон цен и специалисты, выполняющие
             процедуру.

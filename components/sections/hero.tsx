@@ -84,7 +84,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 bg-primary-light text-white px-4 py-2 rounded-full text-sm font-medium"
             >
               <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-              Ваш подолог в Долгопрудном
+              Ваш центр подологии в Долгопрудном
             </motion.div>
 
             {/* Headline */}
@@ -105,8 +105,8 @@ export function Hero() {
               className="text-lg text-slate-600 max-w-xl"
             >
               Выполняем подологические и сопутствующие процедуры: медицинский педикюр, ортониксию, лечение вросшего
-              ногтя, озонотерапию, плазмодинамическое воздействие и остеопатические консультации. Приём взрослых и
-              детей по записи.
+              ногтя, озонотерапию, плазмодинамическое воздействие и остеопатические консультации. Приём взрослых и детей
+              по записи.
             </motion.p>
 
             {/* CTAs */}
