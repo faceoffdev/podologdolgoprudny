@@ -4,6 +4,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import Link from 'next/link'
 import { SocialLinks } from '@/components/ui/social-links'
+import { getServicesByCategory, serviceCategories } from '@/lib/services'
 
 const quickLinks = [
   { name: 'Главная', href: '/#home' },
@@ -13,14 +14,15 @@ const quickLinks = [
   { name: 'Контакты', href: '/contacts' },
 ]
 
-const services = [
-  { name: 'Консультация подолога', href: '/uslugi/konsultatsiya-podologa/' },
-  { name: 'Медицинский педикюр', href: '/uslugi/meditsinskiy-pedikyur/' },
-  { name: 'Остеопатический прием', href: '/uslugi/osteopaticheskiy-priem/' },
-  { name: 'Коррекция вросшего ногтя', href: '/uslugi/korrektsiya-vrosshego-nogtya/' },
-]
-
 export function Footer() {
+  const categoryLinks = serviceCategories
+    .map((category) => ({
+      name: category.name,
+      href: `/uslugi/${category.slug}/`,
+      count: getServicesByCategory(category.slug).length,
+    }))
+    .filter((category) => category.count > 3)
+
   return (
     <footer id="contact" className="bg-slate-900 text-white" itemScope itemType="https://schema.org/Organization">
       <meta itemProp="name" content="Центр Подологии и Остеопатии" />
@@ -65,10 +67,10 @@ export function Footer() {
           <div>
             <p className="font-semibold text-lg mb-6">Услуги</p>
             <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <Link href={service.href} className="text-slate-400 hover:text-primary transition-colors">
-                    {service.name}
+              {categoryLinks.map((category) => (
+                <li key={category.href}>
+                  <Link href={category.href} className="text-slate-400 hover:text-primary transition-colors">
+                    {category.name}
                   </Link>
                 </li>
               ))}
@@ -149,7 +151,7 @@ export function Footer() {
               врача. Имеются противопоказания. Необходима консультация специалиста.
             </p>
             <p>
-              Обращаем Ваше внимание на то, что данный интернет-сайт носит исключительно информационный характер и ни
+              Обращаем ваше внимание на то, что данный интернет-сайт носит исключительно информационный характер и ни
               при каких условиях информационные материалы и цены, размещенные на сайте, не являются публичной офертой,
               определяемой положениями Статьи 437 Гражданского кодекса РФ.
             </p>

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const categoryServices = getServicesByCategory(category.slug)
     const categoryDescription =
       categoryServices.length > 0
-        ? `Все услуги категории «${category.name}» с ценами и переходом на детальные страницы процедур.`
+        ? `Все услуги категории «${category.name}» с описаниями, диапазонами цен и переходом на детальные страницы процедур.`
         : category.description
 
     return {
@@ -59,17 +59,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const range = getServicePriceRange(service)
-  const pricePart = range ? ` ${formatPriceRange(range)}.` : ''
+  const cleanShort = service.shortDescription.replace(/[.!?]+$/, '')
+  const pricePart = range ? ` ${formatPriceRange(range)}.` : '.'
 
   return {
     title: `${service.name} - услуги и цены`,
-    description: `${service.shortDescription}.${pricePart}`,
+    description: `${cleanShort}.${pricePart}`,
     alternates: {
       canonical: service.profileUrl,
     },
     openGraph: {
       title: `${service.name} - услуги и цены`,
-      description: `${service.shortDescription}.${pricePart}`,
+      description: `${cleanShort}.${pricePart}`,
       url: service.profileUrl,
       type: 'article',
     },
@@ -194,7 +195,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">{category.name}</h1>
               <p className="text-base sm:text-lg text-slate-600">
-                Полный список услуг категории «{category.name}» с актуальными ценами.
+                Полный список услуг категории «{category.name}» с актуальными ценами и переходом к подробному описанию
+                каждой процедуры.
               </p>
             </div>
           </div>

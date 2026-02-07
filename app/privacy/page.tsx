@@ -9,14 +9,41 @@ export const metadata: Metadata = {
   description:
     'Политика конфиденциальности Центра Подологии и Остеопатии: состав данных, цели обработки, защита и права пользователей.',
   alternates: {
-    canonical: '/privacy',
+    canonical: '/privacy/',
+  },
+  openGraph: {
+    title: 'Политика конфиденциальности — Центр Подологии и Остеопатии',
+    description:
+      'Политика конфиденциальности Центра Подологии и Остеопатии: состав данных, цели обработки, защита и права пользователей.',
+    url: '/privacy/',
+    type: 'article',
   },
 }
 
 export default function PrivacyPage() {
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteConfig.siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Политика конфиденциальности',
+        item: `${siteConfig.siteUrl}/privacy/`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

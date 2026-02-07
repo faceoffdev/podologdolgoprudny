@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: 'Контакты — Центр Подологии и Остеопатии в Долгопрудном',
   description: 'Контакты центра подологии и остеопатии в Долгопрудном: адрес, телефон, часы работы и карта проезда.',
   alternates: {
-    canonical: '/contacts',
+    canonical: '/contacts/',
   },
   openGraph: {
     title: 'Контакты — Центр Подологии и Остеопатии в Долгопрудном',
     description: 'Контакты центра подологии и остеопатии в Долгопрудном: адрес, телефон, часы работы и карта проезда.',
-    url: '/contacts',
+    url: '/contacts/',
     type: 'website',
   },
 }
@@ -26,7 +26,7 @@ const contactJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['MedicalClinic', 'LocalBusiness'],
   name: 'Центр Подологии и Остеопатии',
-  url: `${siteConfig.siteUrl}/contacts`,
+  url: `${siteConfig.siteUrl}/contacts/`,
   telephone: siteConfig.phone.display,
   email: siteConfig.email,
   address: {
@@ -35,14 +35,41 @@ const contactJsonLd = {
     addressLocality: siteConfig.address.locality,
     addressCountry: siteConfig.address.country,
   },
-  openingHours: siteConfig.schedule,
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '07:30',
+      closes: '22:00',
+    },
+  ],
   sameAs: siteConfig.socials.map((social) => social.href),
 }
 
 export default function ContactsPage() {
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteConfig.siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Контакты',
+        item: `${siteConfig.siteUrl}/contacts/`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
 
       <section className="pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }} />

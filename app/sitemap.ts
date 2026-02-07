@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { doctors } from '@/lib/doctors'
 import { siteConfig } from '@/lib/site-config'
-import { services } from '@/lib/services'
+import { getServicesByCategory, serviceCategories, services } from '@/lib/services'
 
 export const dynamic = 'force-static'
 
@@ -24,6 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
+  const categoryEntries: MetadataRoute.Sitemap = serviceCategories
+    .filter((category) => getServicesByCategory(category.slug).length > 3)
+    .map((category) => ({
+      url: `${siteConfig.siteUrl}/uslugi/${category.slug}/`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    }))
+
   const specialistEntries: MetadataRoute.Sitemap = doctors.map((doctor) => ({
     url: `${siteConfig.siteUrl}${doctor.profileUrl}`,
     lastModified: now,
@@ -31,5 +40,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...staticEntries, ...serviceEntries, ...specialistEntries]
+  return [...staticEntries, ...categoryEntries, ...serviceEntries, ...specialistEntries]
 }

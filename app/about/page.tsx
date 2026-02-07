@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Navbar } from '@/components/sections/navbar'
 import { Footer } from '@/components/sections/footer'
 import { CTA } from '@/components/sections/cta'
@@ -15,7 +16,14 @@ export const metadata: Metadata = {
   description:
     'Центр Подологии и Остеопатии в Долгопрудном работает с 2015 года. Высокотехнологичный подологический кабинет и кабинет мануальных практик, опытные специалисты и индивидуальный подход.',
   alternates: {
-    canonical: '/about',
+    canonical: '/about/',
+  },
+  openGraph: {
+    title: 'О нас — Центр Подологии и Остеопатии в Долгопрудном',
+    description:
+      'О центре, специалистах, оборудовании и стандартах работы Центра Подологии и Остеопатии в Долгопрудном.',
+    url: '/about/',
+    type: 'website',
   },
 }
 
@@ -140,12 +148,40 @@ const qualityStandards = [
 ]
 
 export default function AboutPage() {
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteConfig.siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'О нас',
+        item: `${siteConfig.siteUrl}/about/`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen">
       <Navbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
 
       <section id="about" className="pt-28 lg:pt-32 pb-12 lg:pb-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center text-sm text-slate-500 mb-6 gap-2">
+            <Link href="/" className="hover:text-primary transition-colors">
+              Главная
+            </Link>
+            <span>/</span>
+            <span className="text-slate-700">О нас</span>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
               <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold">

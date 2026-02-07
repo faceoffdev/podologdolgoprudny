@@ -69,11 +69,11 @@ export function Services() {
             Наши услуги
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-            Подологические услуги и цены в Долгопрудном
+            Услуги и цены центра в Долгопрудном
           </h2>
           <p className="text-lg text-slate-600">
-            Актуальные услуги центра с переходом на детальные страницы: описание, диапазон цен и специалисты, которые
-            выполняют процедуру.
+            Актуальные услуги с переходом на детальные страницы: описание, диапазон цен и специалисты, выполняющие
+            процедуру.
           </p>
           <Link href="/uslugi/" className="inline-flex mt-6 text-primary font-semibold hover:text-primary-dark">
             Смотреть все услуги и цены

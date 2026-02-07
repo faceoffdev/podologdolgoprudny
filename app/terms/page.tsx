@@ -9,14 +9,41 @@ export const metadata: Metadata = {
   description:
     'Пользовательское соглашение (публичная оферта) сайта Центра Подологии и Остеопатии: правила использования и записи на услуги.',
   alternates: {
-    canonical: '/terms',
+    canonical: '/terms/',
+  },
+  openGraph: {
+    title: 'Пользовательское соглашение — Центр Подологии и Остеопатии',
+    description:
+      'Пользовательское соглашение (публичная оферта) сайта Центра Подологии и Остеопатии: правила использования и записи на услуги.',
+    url: '/terms/',
+    type: 'article',
   },
 }
 
 export default function TermsPage() {
+  const breadcrumbsJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: `${siteConfig.siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Пользовательское соглашение',
+        item: `${siteConfig.siteUrl}/terms/`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
 
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-12 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
