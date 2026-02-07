@@ -7,7 +7,6 @@ import { CTA } from '@/components/sections/cta'
 import { Card, CardContent } from '@/components/ui/card'
 import { doctors } from '@/lib/doctors'
 import { siteConfig } from '@/lib/site-config'
-import { withBasePath } from '@/lib/paths'
 
 export const metadata: Metadata = {
   title: 'Специалисты центра подологии и остеопатии',
@@ -26,21 +25,6 @@ export const metadata: Metadata = {
 }
 
 export default function SpecialistsPage() {
-  const siteUrl = siteConfig.siteUrl
-  const organizationId = `${siteUrl}/#organization`
-
-  const organizationJson = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
-    '@id': organizationId,
-    name: 'Центр Подологии и Остеопатии',
-    url: siteUrl,
-    telephone: siteConfig.phone.display,
-    email: siteConfig.email,
-    image: `${siteUrl}${withBasePath('/images/logo.svg')}`,
-    sameAs: siteConfig.socials.map((social) => social.href),
-  }
-
   const breadcrumbsJson = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -49,13 +33,13 @@ export default function SpecialistsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Главная',
-        item: `${siteUrl}/`,
+        item: `${siteConfig.siteUrl}/`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Специалисты',
-        item: `${siteUrl}/specialisty/`,
+        item: `${siteConfig.siteUrl}/specialisty/`,
       },
     ],
   }
@@ -72,10 +56,10 @@ export default function SpecialistsPage() {
         name: doctor.name,
         jobTitle: doctor.specialty,
         medicalSpecialty: doctor.medicalSpecialty,
-        image: `${siteUrl}${doctor.image}`,
-        url: `${siteUrl}${doctor.profileUrl}`,
+        image: `${siteConfig.siteUrl}${doctor.image}`,
+        url: `${siteConfig.siteUrl}${doctor.profileUrl}`,
         worksFor: {
-          '@id': organizationId,
+          '@id': `${siteConfig.siteUrl}/#organization`,
         },
       },
     })),
@@ -84,7 +68,6 @@ export default function SpecialistsPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJson) }} />
 

@@ -61,21 +61,6 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
     .filter((item) => item.slug !== doctor.slug && item.medicalSpecialty === doctor.medicalSpecialty)
     .slice(0, 2)
 
-  const siteUrl = siteConfig.siteUrl
-  const organizationId = `${siteUrl}/#organization`
-
-  const organizationJson = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
-    '@id': organizationId,
-    name: 'Центр Подологии и Остеопатии',
-    url: siteUrl,
-    telephone: siteConfig.phone.display,
-    email: siteConfig.email,
-    image: `${siteUrl}${withBasePath('/images/logo.svg')}`,
-    sameAs: siteConfig.socials.map((social) => social.href),
-  }
-
   const breadcrumbsJson = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -84,19 +69,19 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
         '@type': 'ListItem',
         position: 1,
         name: 'Главная',
-        item: `${siteUrl}/`,
+        item: `${siteConfig.siteUrl}/`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Специалисты',
-        item: `${siteUrl}/specialisty/`,
+        item: `${siteConfig.siteUrl}/specialisty/`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: doctor.name,
-        item: `${siteUrl}${doctor.profileUrl}`,
+        item: `${siteConfig.siteUrl}${doctor.profileUrl}`,
       },
     ],
   }
@@ -107,11 +92,11 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
     name: doctor.name,
     jobTitle: doctor.specialty,
     medicalSpecialty: doctor.medicalSpecialty,
-    image: `${siteUrl}${doctor.image}`,
+    image: `${siteConfig.siteUrl}${doctor.image}`,
     description: doctor.shortBio,
-    url: `${siteUrl}${doctor.profileUrl}`,
+    url: `${siteConfig.siteUrl}${doctor.profileUrl}`,
     worksFor: {
-      '@id': organizationId,
+      '@id': `${siteConfig.siteUrl}/#organization`,
       '@type': 'MedicalBusiness',
       name: 'Центр Подологии и Остеопатии',
     },
@@ -131,7 +116,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
         itemOffered: {
           '@type': 'Service',
           name: service.name,
-          url: `${siteUrl}${service.profileUrl}`,
+          url: `${siteConfig.siteUrl}${service.profileUrl}`,
         },
       }
     }),
@@ -140,7 +125,6 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJson) }} />

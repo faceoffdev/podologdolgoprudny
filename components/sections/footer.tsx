@@ -1,10 +1,11 @@
 'use client'
 
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { Clock, Mail, MapPin, Phone } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import Link from 'next/link'
 import { SocialLinks } from '@/components/ui/social-links'
 import { getServicesByCategory, serviceCategories } from '@/lib/services'
+import { FooterRatingFeedback } from '@/components/sections/footer-rating-feedback'
 
 const quickLinks = [
   { name: 'Главная', href: '/#home' },
@@ -126,6 +127,7 @@ export function Footer() {
                 <span className="text-slate-400">{siteConfig.schedule}</span>
               </li>
             </ul>
+            <FooterRatingFeedback />
           </div>
         </div>
 

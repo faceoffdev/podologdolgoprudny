@@ -18,7 +18,6 @@ import {
   services,
 } from '@/lib/services'
 import { siteConfig } from '@/lib/site-config'
-import { withBasePath } from '@/lib/paths'
 
 export async function generateStaticParams() {
   const slugs = new Set<string>()
@@ -86,21 +85,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     notFound()
   }
 
-  const siteUrl = siteConfig.siteUrl
-  const organizationId = `${siteUrl}/#organization`
-
-  const organizationJson = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
-    '@id': organizationId,
-    name: 'Центр Подологии и Остеопатии',
-    url: siteUrl,
-    telephone: siteConfig.phone.display,
-    email: siteConfig.email,
-    image: `${siteUrl}${withBasePath('/images/logo.svg')}`,
-    sameAs: siteConfig.socials.map((social) => social.href),
-  }
-
   if (category) {
     const categoryServices = getServicesByCategory(category.slug)
 
@@ -112,19 +96,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           '@type': 'ListItem',
           position: 1,
           name: 'Главная',
-          item: `${siteUrl}/`,
+          item: `${siteConfig.siteUrl}/`,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Услуги',
-          item: `${siteUrl}/uslugi/`,
+          item: `${siteConfig.siteUrl}/uslugi/`,
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: category.name,
-          item: `${siteUrl}/uslugi/${category.slug}/`,
+          item: `${siteConfig.siteUrl}/uslugi/${category.slug}/`,
         },
       ],
     }
@@ -143,8 +127,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             '@type': 'Service',
             name: categoryService.name,
             description: categoryService.shortDescription,
-            url: `${siteUrl}${categoryService.profileUrl}`,
-            provider: { '@id': organizationId },
+            url: `${siteConfig.siteUrl}${categoryService.profileUrl}`,
+            provider: { '@id': `${siteConfig.siteUrl}/#organization` },
             ...(priceRange
               ? {
                   offers:
@@ -171,7 +155,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     return (
       <main className="min-h-screen bg-white">
         <Navbar />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJson) }} />
 
@@ -261,20 +244,20 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const relatedServices = categoryServices.filter((item) => item.slug !== service.slug).slice(0, 4)
 
   const breadcrumbItems: Array<{ name: string; item: string }> = [
-    { name: 'Главная', item: `${siteUrl}/` },
-    { name: 'Услуги', item: `${siteUrl}/uslugi/` },
+    { name: 'Главная', item: `${siteConfig.siteUrl}/` },
+    { name: 'Услуги', item: `${siteConfig.siteUrl}/uslugi/` },
   ]
 
   if (showCategoryBreadcrumb && serviceCategory) {
     breadcrumbItems.push({
       name: serviceCategory.name,
-      item: `${siteUrl}/uslugi/${serviceCategory.slug}/`,
+      item: `${siteConfig.siteUrl}/uslugi/${serviceCategory.slug}/`,
     })
   }
 
   breadcrumbItems.push({
     name: service.name,
-    item: `${siteUrl}${service.profileUrl}`,
+    item: `${siteConfig.siteUrl}${service.profileUrl}`,
   })
 
   const breadcrumbsJson = {
@@ -293,9 +276,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     '@type': 'Service',
     name: service.name,
     description: service.shortDescription,
-    url: `${siteUrl}${service.profileUrl}`,
+    url: `${siteConfig.siteUrl}${service.profileUrl}`,
     provider: {
-      '@id': organizationId,
+      '@id': `${siteConfig.siteUrl}/#organization`,
     },
     category: serviceCategory?.name,
     ...(priceRange
@@ -329,7 +312,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         '@type': 'Person',
         name: entry.doctor.name,
         jobTitle: entry.doctor.specialty,
-        url: `${siteUrl}${entry.doctor.profileUrl}`,
+        url: `${siteConfig.siteUrl}${entry.doctor.profileUrl}`,
       },
     })),
   }
@@ -337,7 +320,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(providersJson) }} />

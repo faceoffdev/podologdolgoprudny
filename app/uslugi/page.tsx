@@ -13,7 +13,6 @@ import {
   services,
 } from '@/lib/services'
 import { siteConfig } from '@/lib/site-config'
-import { withBasePath } from '@/lib/paths'
 
 export const metadata: Metadata = {
   title: 'Услуги и цены центра подологии и остеопатии',
@@ -31,27 +30,12 @@ export const metadata: Metadata = {
 }
 
 export default function ServicesPage() {
-  const siteUrl = siteConfig.siteUrl
-  const organizationId = `${siteUrl}/#organization`
-
   const categories = serviceCategories
     .map((category) => ({
       category,
       items: getServicesByCategory(category.slug),
     }))
     .filter((entry) => entry.items.length > 0)
-
-  const organizationJson = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
-    '@id': organizationId,
-    name: 'Центр Подологии и Остеопатии',
-    url: siteUrl,
-    telephone: siteConfig.phone.display,
-    email: siteConfig.email,
-    image: `${siteUrl}${withBasePath('/images/logo.svg')}`,
-    sameAs: siteConfig.socials.map((social) => social.href),
-  }
 
   const breadcrumbsJson = {
     '@context': 'https://schema.org',
@@ -61,13 +45,13 @@ export default function ServicesPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Главная',
-        item: `${siteUrl}/`,
+        item: `${siteConfig.siteUrl}/`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Услуги',
-        item: `${siteUrl}/uslugi/`,
+        item: `${siteConfig.siteUrl}/uslugi/`,
       },
     ],
   }
@@ -86,8 +70,8 @@ export default function ServicesPage() {
           '@type': 'Service',
           name: service.name,
           description: service.shortDescription,
-          url: `${siteUrl}${service.profileUrl}`,
-          provider: { '@id': organizationId },
+          url: `${siteConfig.siteUrl}${service.profileUrl}`,
+          provider: { '@id': `${siteConfig.siteUrl}/#organization` },
           ...(priceRange
             ? {
                 offers:
@@ -114,7 +98,6 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJson) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJson) }} />
 

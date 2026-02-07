@@ -30,3 +30,11 @@ export const siteConfig = {
     },
   ],
 } as const
+
+export const aggregateRating = {
+  ratingValue: 5.0,
+  reviewCount: 78,
+  ratingCount: 111,
+  bestRating: 5,
+  worstRating: 1,
+} as const
