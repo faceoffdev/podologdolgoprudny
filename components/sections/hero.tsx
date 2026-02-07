@@ -173,7 +173,7 @@ export function Hero() {
                   height={800}
                   sizes="(min-width: 1024px) 600px, 100vw"
                   className="w-full h-auto object-cover"
-                  priority
+                  loading="lazy"
                 />
               </div>
 
