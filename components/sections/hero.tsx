@@ -88,14 +88,14 @@ export function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <motion.p
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight"
             >
               Центр подологии и остеопатии в Долгопрудном: экспертная помощь при заболеваниях стоп и ногтей
-            </motion.p>
+            </motion.h1>
 
             {/* Subheadline */}
             <motion.p
