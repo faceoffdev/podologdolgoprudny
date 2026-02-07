@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     url: siteConfig.siteUrl,
     type: 'website',
   },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 }
 
 const organizationJsonLd = {
