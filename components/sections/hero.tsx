@@ -11,7 +11,7 @@ import { withBasePath } from '@/lib/paths'
 const stats = [
   { icon: Users, value: 5000, suffix: '+', label: 'Довольных пациентов' },
   { icon: Star, value: 98, suffix: '%', label: 'Уровень удовлетворенности' },
-  { icon: Users, value: 5, suffix: '+', label: 'Опытных специалистов' },
+  { icon: Users, value: 6, suffix: '+', label: 'Опытных специалистов' },
   { icon: Clock, value: 24, suffix: '/7', label: 'Поддержка' },
 ]
 

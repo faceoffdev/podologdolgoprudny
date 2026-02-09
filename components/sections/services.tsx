@@ -89,27 +89,27 @@ export function Services() {
             <motion.div key={group.slug} variants={itemVariants}>
               <Card className="h-full group cursor-pointer">
                 <CardContent className="p-6 lg:p-8">
-                  <p className="text-xl font-semibold text-slate-900 mb-3">{group.title}</p>
+                  <p className="text-xl font-semibold text-slate-900 mb-3">
+                    {group.totalServices > 3 && <Link href={`/uslugi/${group.slug}/`}>{group.title}</Link>}
+                    {group.totalServices <= 3 && <>{group.title}</>}
+                    <span className="ml-1 text-base sm:text-lg font-medium text-slate-500 whitespace-nowrap">
+                      ({group.totalServices})
+                    </span>
+                  </p>
                   <ul className="text-slate-600 leading-relaxed list-disc list-inside space-y-2">
                     {group.services.map((service) => (
                       <li key={service.slug}>
-                        <Link href={service.profileUrl} className="hover:text-primary transition-colors">
+                        <Link
+                          href={service.profileUrl}
+                          title={`${service.name} Долгопрудный`}
+                          className="hover:text-primary transition-colors"
+                        >
                           {service.name}
                         </Link>{' '}
                         <span className="text-slate-500">({formatPriceRange(getServicePriceRange(service))})</span>
                       </li>
                     ))}
                   </ul>
-                  {group.totalServices > 3 && (
-                    <p className="mt-4">
-                      <Link
-                        href={`/uslugi/${group.slug}/`}
-                        className="text-primary font-medium hover:text-primary-dark"
-                      >
-                        Подробнее по категории
-                      </Link>
-                    </p>
-                  )}
                 </CardContent>
               </Card>
             </motion.div>

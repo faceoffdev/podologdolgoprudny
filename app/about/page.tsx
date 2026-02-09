@@ -62,6 +62,10 @@ const manualPracticeGallery: GalleryImage[] = [
     src: withBasePath('/images/about/manual-2.webp'),
     alt: 'Массажист Бембеев Виктор Шукраевич Долгопрудный',
   },
+  {
+    src: withBasePath('/images/about/manual-3.webp'),
+    alt: 'Остеопат Эдгаев Дольган Алексеевич Долгопрудный',
+  },
 ]
 
 const ozonTherapyGallery: GalleryImage[] = [
@@ -121,22 +125,49 @@ const worksGallery: GalleryImage[] = [
   },
 ]
 
+const certificatesGallery: GalleryImage[] = [
+  {
+    src: withBasePath('/images/about/certificates/Сертификат-СТВ.webp'),
+    alt: 'Сертификат Солоха Татьяна Викторовна',
+  },
+  {
+    src: withBasePath('/images/about/certificates/Диплом-ЭДА.webp'),
+    alt: 'Диплом Эдгаев Дольган Алексеевич',
+  },
+  {
+    src: withBasePath('/images/about/certificates/Диплом-ГНА.webp'),
+    alt: 'Диплом Голикова Наталья Анатольевна',
+  },
+  {
+    src: withBasePath('/images/about/certificates/Квалификация-ГНА.webp'),
+    alt: 'Диплом Голикова Наталья Анатольевна',
+  },
+  {
+    src: withBasePath('/images/about/certificates/Свидетельство-ИЯП.webp'),
+    alt: 'Свидетельство Ионычева Яна Петровна',
+  },
+]
+
 const equipmentItems = [
   {
     title: 'Аэродинамическая процедура SkinHale',
-    description: 'Проводим аппаратную процедуру для бережного ухода и восстановительных программ.',
+    description:
+      'SkinHale — аппаратная аэродинамическая платформа для неинвазивного ухода за кожей лица и тела. Протоколы AD Massage (глубокий массаж для лимфодренажа и тонуса), Aero Dynamic Peeling (газожидкостный пилинг), Aero Dynamic Infusion (трансдермальная доставка веществ без инъекций) и барофорез помогают улучшить микроциркуляцию, мягко обновить кожу и доставить активные компоненты.',
   },
   {
     title: 'Melatherm 10 — моечно-дезинфицирующая машина',
-    description: 'Автоматизированная обработка инструмента с контролем режимов для стабильной стерильности.',
+    description:
+      'Melatherm 10 (NSK NAKANISHI INC) — медицинская моечно-дезинфицирующая машина для автоматизированной обработки инструмента. Контролируемые циклы очистки и термодезинфекции обеспечивают стабильное качество подготовки инструментария и высокий уровень безопасности процедур.',
   },
   {
-    title: 'Профессиональные подологические аппараты',
-    description: 'Точные режимы и насадки для безопасной обработки и коррекции сложных случаев.',
+    title: 'Podolog Nova 3S',
+    description:
+      'Podolog Nova 3S — профессиональный подологический аппарат немецкого производителя Hellmut Ruck GmbH. Обеспечивает точную и деликатную обработку кожи и ногтевых пластин, стабильную работу и высокий комфорт пациента во время процедуры.',
   },
   {
-    title: 'Оптика, освещение и расходные материалы',
-    description: 'Увеличительная оптика, точный свет и сертифицированные материалы для комфортных процедур.',
+    title: 'Автоклав класса "В"',
+    description:
+      'Автоклав класса "В" Europa B Evo 24 (Tecno-Gaz) используется для полной стерилизации инструмента после каждого пациента. Подходит для обработки полых, пористых и твердых материалов в упаковке и без упаковки, что поддерживает высокий стандарт инфекционной безопасности.',
   },
 ]
 
@@ -214,6 +245,20 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+            <div className="lg:col-span-2 pt-2 border-t border-slate-200">
+              <p className="text-sm font-medium text-slate-900 mb-3">Реквизиты</p>
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600">
+                  ООО «Центр Подологии и Остеопатии»
+                </span>
+                <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600">
+                  ИНН 5047321471
+                </span>
+                <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600">
+                  ОГРН 1255000100200
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -228,7 +273,8 @@ export default function AboutPage() {
               <p className="text-slate-600">
                 Подологи помогают при проблемах стоп и ногтевых пластин: мозоли, трещины, локальный гиперкератоз,
                 врастание и деформация ногтей. Используем современные методы коррекции и бережной обработки, чтобы
-                восстановить комфорт и внешний вид стоп. Дополняем подологию озонотерапией, гирудотерапией и
+                восстановить комфорт и внешний вид стоп. Дополняем подологический уход востребованными процедурами:
+                озонотерапией (общие и местные методики), гирудотерапией (в том числе вагинальной) и новейшей
                 аэродинамической процедурой SkinHale.
               </p>
             </div>
@@ -244,7 +290,7 @@ export default function AboutPage() {
       </section>
 
       <GallerySection
-        title="Центр Подологии и Остеопатии — Долгопрудный"
+        title="Центр Подологии и Остеопатии"
         description="Фотографии кабинетов и специалистов центра."
         images={centerGallery}
         columns="md:grid-cols-2"
@@ -256,7 +302,7 @@ export default function AboutPage() {
         title="Кабинет мануальных практик"
         description="Комфортное пространство для остеопатии и восстановительных практик."
         images={manualPracticeGallery}
-        columns="md:grid-cols-2"
+        columns="md:grid-cols-3"
         sizes="(min-width: 768px) 50vw, 100vw"
       />
 
@@ -284,6 +330,14 @@ export default function AboutPage() {
         columns="sm:grid-cols-2 lg:grid-cols-3"
         sizes="(min-width: 1024px) 33vw, 100vw"
         sectionClassName="py-12 lg:py-20 bg-slate-50"
+      />
+
+      <GallerySection
+        title="Дипломы и сертификаты"
+        description="Документы, подтверждающие квалификацию специалистов центра."
+        images={certificatesGallery}
+        columns="sm:grid-cols-2 lg:grid-cols-3"
+        sizes="(min-width: 1024px) 33vw, 100vw"
       />
 
       <EquipmentSection items={equipmentItems} />

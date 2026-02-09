@@ -114,7 +114,7 @@ export default function SpecialistsPage() {
                   </div>
                   <CardContent className="p-5 text-center space-y-3">
                     <div>
-                      <p className="text-sm text-slate-500">{doctor.medicalSpecialty}</p>
+                      <p className="text-sm text-slate-500">{doctor.specialty}</p>
                       <p className="text-lg font-semibold text-slate-900">{doctor.name}</p>
                     </div>
                     <p className="text-sm text-slate-600">{doctor.shortBio}</p>

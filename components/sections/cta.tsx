@@ -25,7 +25,7 @@ export function CTA() {
           <div className="relative grid lg:grid-cols-2 gap-8 items-center p-8 lg:p-16">
             {/* Left Content */}
             <div className="text-center lg:text-left">
-              <motion.h3
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -33,7 +33,7 @@ export function CTA() {
                 className="text-3xl lg:text-4xl font-bold text-white mb-4"
               >
                 Готовы позаботиться о здоровье стоп?
-              </motion.h3>
+              </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export function CTA() {
                 <p className="text-white/70">Поддержка</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
-                <p className="text-4xl font-bold text-white mb-2">5+</p>
+                <p className="text-4xl font-bold text-white mb-2">6+</p>
                 <p className="text-white/70">Опытных специалистов</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">

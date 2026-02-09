@@ -88,7 +88,7 @@ export default function ContactsPage() {
                 Контакты
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
-                Центр Подологии и Остеопатии — Долгопрудный
+                Центр Подологии и Остеопатии — город Долгопрудный
               </h1>
               <p className="text-slate-600 text-base sm:text-lg">
                 Свяжитесь с нами удобным способом: по телефону, через онлайн-запись или в мессенджерах.

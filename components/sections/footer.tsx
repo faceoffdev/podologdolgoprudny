@@ -70,7 +70,11 @@ export function Footer() {
             <ul className="space-y-3">
               {categoryLinks.map((category) => (
                 <li key={category.href}>
-                  <Link href={category.href} className="text-slate-400 hover:text-primary transition-colors">
+                  <Link
+                    href={category.href}
+                    title={`${category.name} Долгопрудный`}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                  >
                     {category.name}
                   </Link>
                 </li>
@@ -135,12 +139,6 @@ export function Footer() {
         <div className="border-t border-slate-800 pt-8 pb-6 text-slate-400 text-sm leading-relaxed">
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="font-semibold text-white mb-2">Реквизиты ИП</p>
-              <p>ИП Солоха Татьяна Викторовна</p>
-              <p>ИНН 490906529553</p>
-              <p>ОГРНИП 324508100720822</p>
-            </div>
-            <div>
               <p className="font-semibold text-white mb-2">Реквизиты ООО</p>
               <p>ООО «Центр Подологии и Остеопатии»</p>
               <p>ИНН 5047321471</p>
@@ -151,11 +149,6 @@ export function Footer() {
             <p>
               Материалы, размещённые на сайте, не предназначены для постановки диагноза и лечения и не заменяют приём
               врача. Имеются противопоказания. Необходима консультация специалиста.
-            </p>
-            <p>
-              Обращаем ваше внимание на то, что данный интернет-сайт носит исключительно информационный характер и ни
-              при каких условиях информационные материалы и цены, размещенные на сайте, не являются публичной офертой,
-              определяемой положениями Статьи 437 Гражданского кодекса РФ.
             </p>
           </div>
         </div>
@@ -168,9 +161,6 @@ export function Footer() {
           <div className="flex gap-6">
             <Link href="/privacy" className="text-slate-400 hover:text-primary text-sm transition-colors">
               Политика конфиденциальности
-            </Link>
-            <Link href="/terms" className="text-slate-400 hover:text-primary text-sm transition-colors">
-              Пользовательское соглашение
             </Link>
           </div>
         </div>

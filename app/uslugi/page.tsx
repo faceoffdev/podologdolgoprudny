@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { ArrowRight } from 'lucide-react'
 import { Navbar } from '@/components/sections/navbar'
 import { Footer } from '@/components/sections/footer'
 import { CTA } from '@/components/sections/cta'
@@ -30,6 +29,14 @@ export const metadata: Metadata = {
 }
 
 export default function ServicesPage() {
+  const formatServicesCount = (count: number) => {
+    const mod10 = count % 10
+    const mod100 = count % 100
+    if (mod10 === 1 && mod100 !== 11) return `${count} услуга`
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} услуги`
+    return `${count} услуг`
+  }
+
   const categories = serviceCategories
     .map((category) => ({
       category,
@@ -130,16 +137,20 @@ export default function ServicesPage() {
             <section key={category.slug} className="space-y-4 lg:space-y-6">
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-3">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">{category.name}</h2>
-                  {items.length > 3 && (
-                    <Link
-                      href={`/uslugi/${category.slug}/`}
-                      className="inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark whitespace-nowrap"
-                    >
-                      Смотреть все
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )}
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                      <Link
+                        href={`/uslugi/${category.slug}/`}
+                        title={`${category.name} Долгопрудный`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {category.name}
+                      </Link>
+                    </h2>
+                    <span className="text-base sm:text-lg font-medium text-slate-500 whitespace-nowrap">
+                      ({formatServicesCount(items.length)})
+                    </span>
+                  </div>
                 </div>
                 <p className="text-slate-600">{category.description}</p>
               </div>
@@ -148,18 +159,19 @@ export default function ServicesPage() {
                 {items.slice(0, 3).map((service) => (
                   <Card key={service.slug} className="h-full">
                     <CardHeader className="space-y-2">
-                      <CardTitle className="text-xl leading-snug">{service.name}</CardTitle>
+                      <CardTitle className="text-xl leading-snug">
+                        <Link
+                          href={service.profileUrl}
+                          title={`${service.name} Долгопрудный`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          {service.name}
+                        </Link>
+                      </CardTitle>
                       <p className="text-primary font-semibold">{formatPriceRange(getServicePriceRange(service))}</p>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <p className="text-slate-600">{service.shortDescription}</p>
-                      <Link
-                        href={service.profileUrl}
-                        className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-dark"
-                      >
-                        Подробнее и цены
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
                     </CardContent>
                   </Card>
                 ))}

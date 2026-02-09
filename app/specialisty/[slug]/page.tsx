@@ -7,7 +7,7 @@ import { Navbar } from '@/components/sections/navbar'
 import { Footer } from '@/components/sections/footer'
 import { CTA } from '@/components/sections/cta'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardMainTitle, CardTitle } from '@/components/ui/card'
 import { DoctorServicesList } from '@/components/specialists/doctor-services-list'
 import { doctors, findDoctorBySlug } from '@/lib/doctors'
 import { findServicesByDoctorSlug } from '@/lib/services'
@@ -209,7 +209,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
           <div className="lg:col-span-2 space-y-6 lg:space-y-8">
             <Card>
               <CardHeader>
-                <CardTitle>О специалисте</CardTitle>
+                <CardMainTitle>О специалисте</CardMainTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-slate-600 leading-relaxed">
                 {doctor.bio.map((paragraph) => (
@@ -339,13 +339,14 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
         <section className="py-10 sm:py-12 lg:py-20 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Другие специалисты</h2>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">Другие специалисты</h3>
             </div>
             <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
               {otherDoctors.map((item) => (
                 <Link
                   key={item.slug}
                   href={item.profileUrl}
+                  title={`${item.name} ${item.specialty}`}
                   className="inline-flex items-center text-primary font-medium hover:text-primary-dark"
                 >
                   <Card className="overflow-hidden">
@@ -359,7 +360,7 @@ export default async function DoctorProfilePage({ params }: { params: Promise<{ 
                       />
                       <div className="p-5 sm:p-6 space-y-3">
                         <div>
-                          <p className="text-sm text-slate-500">{item.medicalSpecialty}</p>
+                          <p className="text-sm text-slate-500">{item.specialty}</p>
                           <p className="text-lg font-semibold text-slate-900">{item.name}</p>
                         </div>
                         <p className="text-sm text-slate-600">{item.shortBio}</p>

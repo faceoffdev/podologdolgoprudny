@@ -17,7 +17,7 @@ const fadeInUp = {
 
 export function EquipmentSection({ items }: { items: readonly EquipmentItem[] }) {
   return (
-    <section className="py-12 lg:py-20">
+    <section className="py-12 lg:py-20 bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div {...fadeInUp} className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Оборудование и технологии</h2>
