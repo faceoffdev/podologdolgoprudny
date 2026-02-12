@@ -29,7 +29,11 @@ export function DoctorServicesList({ services, initialVisibleCount = 5 }: Doctor
         <div key={service.profileUrl} className="flex items-start gap-2">
           <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
           <div className="space-y-0.5">
-            <Link href={service.profileUrl} title={`${service.name} Долгопрудный`} className="font-medium text-slate-800 hover:text-primary">
+            <Link
+              href={service.profileUrl}
+              title={`${service.name} Долгопрудный`}
+              className="font-medium text-slate-800 hover:text-primary"
+            >
               {service.name}
             </Link>
             <p className="text-sm text-slate-500">{formatPriceRange(service.price)}</p>

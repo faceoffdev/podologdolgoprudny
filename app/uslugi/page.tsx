@@ -139,13 +139,16 @@ export default function ServicesPage() {
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex flex-wrap items-baseline gap-2">
                     <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-                      <Link
-                        href={`/uslugi/${category.slug}/`}
-                        title={`${category.name} Долгопрудный`}
-                        className="hover:text-primary transition-colors"
-                      >
-                        {category.name}
-                      </Link>
+                      {items.length > 3 && (
+                        <Link
+                          href={`/uslugi/${category.slug}/`}
+                          title={`${category.name} Долгопрудный`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          {category.name}
+                        </Link>
+                      )}
+                      {items.length <= 3 && <>{category.name}</>}
                     </h2>
                     <span className="text-base sm:text-lg font-medium text-slate-500 whitespace-nowrap">
                       ({formatServicesCount(items.length)})
