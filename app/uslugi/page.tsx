@@ -3,14 +3,8 @@ import type { Metadata } from 'next'
 import { Navbar } from '@/components/sections/navbar'
 import { Footer } from '@/components/sections/footer'
 import { CTA } from '@/components/sections/cta'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import {
-  formatPriceRange,
-  getServicePriceRange,
-  getServicesByCategory,
-  serviceCategories,
-  services,
-} from '@/lib/services'
+import { ServicesCatalog } from '@/components/services/services-catalog'
+import { getServicePriceRange, getServicesByCategory, serviceCategories, services } from '@/lib/services'
 import { siteConfig } from '@/lib/site-config'
 
 export const metadata: Metadata = {
@@ -29,14 +23,6 @@ export const metadata: Metadata = {
 }
 
 export default function ServicesPage() {
-  const formatServicesCount = (count: number) => {
-    const mod10 = count % 10
-    const mod100 = count % 100
-    if (mod10 === 1 && mod100 !== 11) return `${count} услуга`
-    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} услуги`
-    return `${count} услуг`
-  }
-
   const categories = serviceCategories
     .map((category) => ({
       category,
@@ -132,56 +118,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="py-10 sm:py-12 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 lg:space-y-12">
-          {categories.map(({ category, items }) => (
-            <section key={category.slug} className="space-y-4 lg:space-y-6">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-                      {items.length > 3 && (
-                        <Link
-                          href={`/uslugi/${category.slug}/`}
-                          title={`${category.name} Долгопрудный`}
-                          className="hover:text-primary transition-colors"
-                        >
-                          {category.name}
-                        </Link>
-                      )}
-                      {items.length <= 3 && <>{category.name}</>}
-                    </h2>
-                    <span className="text-base sm:text-lg font-medium text-slate-500 whitespace-nowrap">
-                      ({formatServicesCount(items.length)})
-                    </span>
-                  </div>
-                </div>
-                <p className="text-slate-600">{category.description}</p>
-              </div>
-
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
-                {items.slice(0, 3).map((service) => (
-                  <Card key={service.slug} className="h-full">
-                    <CardHeader className="space-y-2">
-                      <CardTitle className="text-xl leading-snug">
-                        <Link
-                          href={service.profileUrl}
-                          title={`${service.name} Долгопрудный`}
-                          className="hover:text-primary transition-colors"
-                        >
-                          {service.name}
-                        </Link>
-                      </CardTitle>
-                      <p className="text-primary font-semibold">{formatPriceRange(getServicePriceRange(service))}</p>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-slate-600">{service.shortDescription}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+        <ServicesCatalog categories={categories} />
       </section>
 
       <CTA />
