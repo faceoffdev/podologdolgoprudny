@@ -96,6 +96,22 @@ const equipmentGallery: GalleryImage[] = [
     src: withBasePath('/images/about/equipment-5.webp'),
     alt: 'Моечно-дезинфицирующая машина Melatherm 10',
   },
+  {
+    src: withBasePath('/images/about/equipment-6.webp'),
+    alt: 'Автоклав класса "В"',
+  },
+  {
+    src: withBasePath('/images/about/equipment-7.webp'),
+    alt: 'Podolog Nova 3S',
+  },
+  {
+    src: withBasePath('/images/about/equipment-8.webp'),
+    alt: 'Аппарат для педикюра с пылесосом SUDA Sudatronic',
+  },
+  {
+    src: withBasePath('/images/about/equipment-9.webp'),
+    alt: 'Аппараты для подологических процедур',
+  },
 ]
 
 const worksGallery: GalleryImage[] = [

@@ -33,8 +33,8 @@ export const siteConfig = {
 
 export const aggregateRating = {
   ratingValue: 5.0,
-  reviewCount: 78,
-  ratingCount: 111,
+  reviewCount: 80,
+  ratingCount: 112,
   bestRating: 5,
   worstRating: 1,
 } as const
